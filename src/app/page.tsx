@@ -1,11 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  AnimatedSpan,
-  Terminal,
-  TypingAnimation,
-} from "@/components/magicui/terminal";
 
 import {
   ScrollVelocityContainer,
@@ -128,192 +123,53 @@ export default function Page() {
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
     >
-      {/* =================== HERO (your original) =================== */}
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "48px",
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          gap: "4rem",
-        }}
-        className="main-container"
+      {/* ============ HERO — Typography First ============ */}
+      <section
+        className="relative min-h-[92vh] flex items-center pt-24"
+        aria-label="Hero"
       >
-        {/* Left side - Hero content */}
+        {/* subtle vertical grid lines */}
         <div
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
           style={{
-            flex: "1",
-            paddingRight: "2rem",
+            background:
+              "repeating-linear-gradient(90deg,#000, #000 1px, transparent 1px, transparent 140px)",
           }}
-        >
-          <h1
-            style={{
-              fontSize: "4rem",
-              fontWeight: "900",
-              lineHeight: "1.1",
-              marginBottom: "2rem",
-              color: "black",
-              filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
-              opacity: isLoaded ? 1 : 0,
-              transform: isLoaded ? "translateY(0)" : "translateY(30px)",
-              transition: "all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s",
-            }}
-          >
-            Uncu Worklabs
-          </h1>
-
-          <h2
-            style={{
-              fontSize: "1.5rem",
-              fontWeight: "600",
-              color: getServiceColor(),
-              marginBottom: "2rem",
-              minHeight: "2rem",
-              transition: "color 0.3s ease",
-              opacity: isLoaded ? 1 : 0,
-              transform: isLoaded ? "translateY(0)" : "translateY(30px)",
-              transitionDelay: "0.4s",
-              transitionDuration: "1s",
-              transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-            }}
-          >
-            {displayText}
-            <span
-              style={{
-                opacity: displayText ? 1 : 0.5,
-                animation: "blink 1s infinite",
-              }}
-            >
-              |
-            </span>
-          </h2>
-
-          <p
-            style={{
-              fontSize: "1.125rem",
-              color: "#374151",
-              maxWidth: "600px",
-              margin: "0 0 3rem 0",
-              lineHeight: "1.7",
-              opacity: isLoaded ? 1 : 0,
-              transform: isLoaded ? "translateY(0)" : "translateY(30px)",
-              transition: "all 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s",
-            }}
-          >
-            A Creative Lab for Digital Solutions crafting websites, apps, and
-            cutting-edge AI ready for the future.
-          </p>
-
-          <a
-            href="#contact"
-            style={{
-              backgroundColor: "#000000",
-              color: "white",
-              padding: "12px 32px",
-              borderRadius: "9999px",
-              border: "none",
-              fontSize: "1rem",
-              fontWeight: "600",
-              display: "inline-block",
-              width: "fit-content",
-              cursor: "pointer",
-              boxShadow: "#000000",
-              transition: "all 0.2s ease",
-              transform: isLoaded ? "scale(1)" : "scale(0.8) translateY(30px)",
-              opacity: isLoaded ? 1 : 0,
-              transitionDelay: "0.8s",
-              transitionDuration: "1s",
-              transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-              textDecoration: "none",
-            }}
-            onMouseOver={(e) => {
-              if (!isLoaded) return;
-              const target = e.currentTarget as HTMLAnchorElement;
-              target.style.backgroundColor = "#000000";
-              target.style.transform = "scale(1.05)";
-              target.style.boxShadow = "#000000";
-            }}
-            onMouseOut={(e) => {
-              if (!isLoaded) return;
-              const target = e.currentTarget as HTMLAnchorElement;
-              target.style.backgroundColor = "#000000";
-              target.style.transform = "scale(1)";
-              target.style.boxShadow = "#000000";
-            }}
-            onMouseDown={(e) => {
-              if (!isLoaded) return;
-              const target = e.currentTarget as HTMLAnchorElement;
-              target.style.transform = "scale(0.95)";
-            }}
-            onMouseUp={(e) => {
-              if (!isLoaded) return;
-              const target = e.currentTarget as HTMLAnchorElement;
-              target.style.transform = "scale(1.05)";
-            }}
-          >
-            Worklabs Begins Now
-          </a>
+        />
+        <div className="relative mx-auto w-full max-w-[1200px] px-6">
+          <div className="flex items-center gap-16">
+            {/* Left side - Hero content */}
+            <div className="flex-1 pr-8">
+              {/* giant headline */}
+              <h1
+                className="leading-[0.9] tracking-[-0.02em] font-extrabold opacity-0 animate-[fadeIn_.6s_ease-out_.1s_forwards]"
+              >
+                <div className="leading-[0.9] tracking-tight">
+                <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-black">
+                  UNCU
+                </span>
+                <span className="block pl-[5.7ch] text-[clamp(3rem,8vw,8rem)] font-semibold text-black">
+                  WORKLABS
+                </span>
+              </div>
+              </h1>
+              {/* strapline */}
+              <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-black inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
+                A Creative Lab for Digital Solutions crafting websites, apps, and cutting-edge AI ready for the future.
+              </p>
+              {/* CTA */}
+              <div className="mt-10 flex">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center rounded-full bg-black px-6 py-3 text-white text-sm font-semibold hover:bg-neutral-800 transition hover:scale-105"
+                >
+                  WORKLABS BEGINS NOW
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Right side - Terminal */}
-        <div
-          style={{
-            flex: "1",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "500px",
-          }}
-        >
-          <Terminal>
-            <TypingAnimation>&gt; worklabs start-project init</TypingAnimation>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Running preflight checks...</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Framework verified. Worklabs engine ready.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Digital workshop online.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Tools & labs activated.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Blueprint generated successfully.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Solutions lab connected.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Innovation module updated.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Worklabs workspace initialized.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-green-500">
-              <span>✔ Dependencies for creativity installed.</span>
-            </AnimatedSpan>
-
-            <AnimatedSpan className="text-blue-500">
-              <span>ℹ Project bootstrapped:</span>
-              <span className="pl-2">- Welcome to Worklabs Build Zone</span>
-            </AnimatedSpan>
-          </Terminal>
-        </div>
-      </div>
-
+      </section>
       {/* =================== ABOUT =================== */} 
       <section 
         id="about" 
