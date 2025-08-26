@@ -314,36 +314,37 @@ export default function Page() {
         </div>
       </div>
 
-      {/* =================== ABOUT =================== */}
-      <section
-        id="about"
-        className="scroll-mt-24 bg-gradient-to-br from-[#ffffff] via-white to-[#fff7f7]"
-      >
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          {/* Big Bold Title */}
-          <div className="text-center">
-            <h2 className="about-hero-title">
+      {/* =================== ABOUT =================== */} 
+      <section 
+        id="about" 
+        className="scroll-mt-24 bg-gradient-to-br from-[#ffffff] via-white to-[#fff7f7]" 
+      > 
+        <div className="mx-auto max-w-6xl px-6 py-20"> 
+          {/* Big Bold Title - Fixed to 3 lines */} 
+          <div className="text-center"> 
+            <h2 className="about-hero-title"> 
               LEARN MORE
-              <br />
+              <br /> 
               ABOUT US
-            </h2>
+            </h2> 
             
-            <TextReveal className="about-subtitle mx-auto mt-6 max-w-2xl text-lg sm:text-xl leading-7 text-neutral-700 text-center">
-              Uncu Worklabs isn’t just a worklabs we’re your launchpad. We design and build web, mobile,
-              and AI solutions so your ideas don’t just launch, they take off.
-            </TextReveal>
-          </div>
+            <TextReveal className="about-subtitle mx-auto mt-4 max-w-3xl text-lg sm:text-xl leading-7 text-neutral-700 text-center"> 
+              Uncu Worklabs isn’t just a worklabs we’re your launchpad
+              We design and build web, mobile, and AI solutions
+              so your ideas don’t just launch, they take off.
+            </TextReveal> 
+          </div> 
 
-          {/* Optional: Keep the CTA button if you want */}
-          <div className="text-center">
-            <a
-              href="/about"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100"
-            >
-              Learn more →
-            </a>
-          </div>
-        </div>
+          {/* Optional: Keep the CTA button if you want */} 
+          <div className="text-center"> 
+            <a 
+              href="/about" 
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100" 
+            > 
+              Learn more → 
+            </a> 
+          </div> 
+        </div> 
       </section>
       {/* =================== INSIDE THE WORKLABS =================== */}
       <section id="services" className="scroll-mt-24 bg-transparent">

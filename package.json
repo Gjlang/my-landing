@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "clear": "powershell -Command \"Remove-Item -Recurse -Force .next\""
   },
   "dependencies": {
     "@next/font": "^14.2.15",
