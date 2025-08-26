@@ -48,9 +48,6 @@
 /* =========================== */
 .card-nav-container {
   position: absolute;
-  top: 2em;
-  left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   max-width: 800px;
   z-index: 99;
@@ -363,87 +360,48 @@
   }
 }
 
-/* ===================== ABOUT SECTION ===================== */
-#about {
-  padding: 80px 24px;
-  background: linear-gradient(135deg, #f7fbff, #ffffff, #fff7f7);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+/* ===================== ABOUT SECTION - NEW STYLE ===================== */
+.about-hero-title {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-weight: 900; 
+  font-size: 10vw; 
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
 }
 
-#about .about-container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-#about h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-
-#about p {
+.about-subtitle {
   font-size: 1.125rem;
-  color: #374151;
-  line-height: 1.75;
-  max-width: 750px;
+  color: #000000;
+  font-weight: 400;
   margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
-/* Features grid (Speed, Quality, etc.) */
-#about .features {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  margin-top: 40px;
-}
-
-#about .feature-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-#about .feature-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-#about .feature-card p {
-  font-size: 0.95rem;
-  color: #4b5563;
-  margin: 0;
-}
-
-/* Two columns on larger screens */
-@media (min-width: 640px) {
-  #about .features {
-    grid-template-columns: repeat(2, 1fr);
+/* Desktop breakpoint - larger fixed size */
+@media (min-width: 768px) {
+  .about-hero-title {
+    font-size: 8rem; /* 128px */
   }
 }
 
-/* CTA link */
-#about a.learn-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 32px;
-  padding: 10px 20px;
-  border: 1px solid #d1d5db;
-  border-radius: 9999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #1f2937;
-  text-decoration: none;
-  transition: background 0.2s ease;
+/* Extra large screens */
+@media (min-width: 1024px) {
+  .about-hero-title {
+    font-size: 9rem; /* 144px */
+  }
 }
 
-#about a.learn-more:hover {
-  background: #f3f4f6;
+/* Ultra wide screens - cap the size */
+@media (min-width: 1400px) {
+  .about-hero-title {
+    font-size: 10rem; /* 160px max */
+  }
 }
 
 /* ===================== PROJECTS SECTION ===================== */
@@ -714,131 +672,46 @@
   background: #f3f4f6;
 }
 
-/* ===================== CONTACT US SECTION ===================== */
-#contact {
-  padding: 120px 24px 80px 24px;
-  background: #ffffff; /* light background like the image */
-  color: #333333;
-  text-align: center;
-  position: relative;
+/* CONTACT */
+.big-hover-btn {
+  font-size: 1.25rem;   /* text lebih besar */
+  padding: 1rem 2rem;   /* tombol lebih lebar & tinggi */
+  border-radius: 0.75rem; /* rounded biar lebih modern */
+  font-weight: 600;
 }
 
-#contact .contact-container {
-  max-width: 800px;
-  margin: 0 auto;
+/* optional hover biar keliatan interaktif */
+.big-hover-btn:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Email button spacing */
+.contact-container .contact-btn {
+  display: block;
+  margin: 2rem auto 3rem auto; /* top 2rem, bottom 3rem biar ada jarak */
+  padding: 1rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px; /* full rounded */
+  border: 1.5px solid #000;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Social links row */
+.contact-container .social-links {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-}
-
-/* Hidden heading for accessibility */
-#contact h2 {
-  position: absolute;
-  left: -9999px;
-  font-size: 0;
-}
-
-/* Annotation text */
-#contact .annotation {
+  justify-content: center; /* center horizontal */
+  gap: 2.5rem;             /* jarak antar link */
   font-size: 1rem;
-  color: #999999;
-  font-style: italic;
-  margin-bottom: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-#contact p {
-  display: none; /* Hide the original paragraph */
-}
-
-#contact .contact-actions {
-  margin-top: 0;
-}
-
-#contact .primary-btn {
-  background: #3a3a3a; /* dark gray like the image */
-  color: #ffffff;
-  padding: 24px 60px; /* larger button */
-  border-radius: 50px;
-  font-size: 2.5rem; /* much larger text */
-  font-weight: 400; /* normal weight like the image */
-  text-decoration: none;
-  box-shadow: 
-    0 10px 20px rgba(0,0,0,0.3),
-    0 6px 12px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255,255,255,0.1); /* 3D effect */
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  display: inline-block;
-  position: relative;
-  border: none;
-  overflow: hidden;
-  min-width: 300px;
-}
-
-/* Neon glow effect on hover */
-#contact .primary-btn:hover {
-  background: #4a4a00; /* dark olive instead of bright yellow */
-  color: #ffff00; /* yellow text */
-  transform: translateY(-3px);
-  box-shadow: 
-    0 0 30px rgba(255,255,0,0.8),
-    0 0 60px rgba(255,255,0,0.6),
-    0 0 90px rgba(255,255,0,0.4),
-    0 12px 24px rgba(0,0,0,0.4); /* maintain 3D shadow */
-  border: 2px solid #ffff00;
-}
-
-/* Pulsing aura animation - more controlled glow */
-#contact .primary-btn::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  background: radial-gradient(ellipse, rgba(255,255,0,0) 0%, rgba(255,255,0,0) 40%, transparent 70%);
-  border-radius: 50px;
-  z-index: -1;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: scale(1);
-}
-
-#contact .primary-btn:hover::before {
-  background: radial-gradient(ellipse, rgba(255,255,0,0.4) 0%, rgba(255,255,0,0.2) 40%, transparent 70%);
-  opacity: 1;
-  animation: pulseAura 1.5s infinite ease-in-out;
-}
-
-@keyframes pulseAura {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.4;
-  }
-}
-
-/* Outer glow layer */
-#contact .primary-btn::after {
-  content: '';
-  position: absolute;
-  top: -25px;
-  left: -25px;
-  right: -25px;
-  bottom: -25px;
-  background: radial-gradient(ellipse, rgba(255,255,0,0) 0%, rgba(255,255,0,0) 30%, transparent 50%);
-  border-radius: 50px;
-  z-index: -2;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: scale(1);
-}
-
-#contact .primary-btn:hover::after {
-  background: radial-gradient(ellipse, rgba(255,255,0,0.2) 0%, rgba(255,255,0,0.1) 30%, transparent 50%);
-  opacity: 1;
-  animation: pulseAura 2s infinite ease-in-out reverse;
+/* Optional hover effect */
+.contact-container .social-links a:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
 }

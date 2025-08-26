@@ -7,13 +7,14 @@ import {
   TypingAnimation,
 } from "@/components/magicui/terminal";
 
-/**
- * Landing page: Hero (your original) + About + Projects + Services + CTA Band
- * - Anchor IDs: #about, #projects, #services, #contact
- * - Simple local filter for projects (All | Web | Mobile | AI)
- * - Accessible buttons/links, keyboard-focusable cards
- * - Tailwind used for new sections (hero left as-is to avoid breaking your styles)
- */
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/magicui/scroll-based-velocity";
+
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import { TextReveal } from "@/components/magicui/text-reveal";
+
 
 type Project = {
   id: number;
@@ -316,51 +317,36 @@ export default function Page() {
       {/* =================== ABOUT =================== */}
       <section
         id="about"
-        className="scroll-mt-24 border-t border-neutral-200/60 bg-gradient-to-br from-[#f7fbff] via-white to-[#fff7f7]"
+        className="scroll-mt-24 bg-gradient-to-br from-[#ffffff] via-white to-[#fff7f7]"
       >
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="mb-6 text-sm font-semibold tracking-widest text-neutral-500">
-            ABOUT
-          </div>
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
-            We build fast, reliable products with senior engineering quality.
-          </h2>
-          <p className="max-w-3xl text-lg leading-7 text-neutral-700">
-            Uncu Worklabs ships modern web, mobile, and AI solutions with clean
-            architecture, thoughtful UX, and production‑ready performance—so you
-            can launch sooner and scale safely.
-          </p>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="text-sm font-bold text-[#22255b]">Speed</div>
-              <p className="mt-2 text-neutral-700">
-                Rapid iterations, CI‑ready code, and pragmatic scope to hit
-                milestones without surprises.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-              <div className="text-sm font-bold text-[#d33831]">Quality</div>
-              <p className="mt-2 text-neutral-700">
-                Typed APIs, accessible UI, and maintainable architecture for the
-                long run.
-              </p>
-            </div>
+          {/* Big Bold Title */}
+          <div className="text-center">
+            <h2 className="about-hero-title">
+              LEARN MORE
+              <br />
+              ABOUT US
+            </h2>
+            
+            <TextReveal className="about-subtitle mx-auto mt-6 max-w-2xl text-lg sm:text-xl leading-7 text-neutral-700 text-center">
+              Uncu Worklabs isn’t just a worklabs we’re your launchpad. We design and build web, mobile,
+              and AI solutions so your ideas don’t just launch, they take off.
+            </TextReveal>
           </div>
 
-          <a
-            href="/about"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100"
-          >
-            Learn more →
-          </a>
+          {/* Optional: Keep the CTA button if you want */}
+          <div className="text-center">
+            <a
+              href="/about"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100"
+            >
+              Learn more →
+            </a>
+          </div>
         </div>
       </section>
-
-      
-
       {/* =================== INSIDE THE WORKLABS =================== */}
-      <section id="services" className="scroll-mt-24 bg-neutral-50">
+      <section id="services" className="scroll-mt-24 bg-transparent">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="mb-10 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
             Inside the Worklabs
@@ -465,21 +451,38 @@ export default function Page() {
         </div>
       </section>
 
-      {/* =================== CONTACT US =================== */}
-      <section id="contact" aria-label="Contact Us">
-        <div className="contact-container">
-          <h2>Contact Us</h2>
-          <p>
-            Have a project in mind? Let’s talk about how we can help you bring your 
-            ideas to life with modern web, mobile, and AI solutions.
-          </p>
+     {/* =================== CONTACT US =================== */}
+    <section id="contact" aria-label="Contact Us">
+      <div className="contact-container">
+        {/* ===== Scroll Velocity Opening ===== */}
+        <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
+          <ScrollVelocityRow baseVelocity={3} direction={1}>
+            · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 · あなたの発射を始めよう · ابدأ انطلاقتك ·
+            Inicia Tu Lanzamiento · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой запуск · Starte Deinen
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
 
-          <div className="contact-actions">
-            <a href="/contact" className="primary-btn">
-              Connect With Us
-            </a>
-          </div>
+      <div className="contact-container">
+        {/* Email Button */}
+        <InteractiveHoverButton
+          onClick={() => (window.location.href = "mailto:Uncu.worklabs@gmail.com")}
+          className="contact-btn"
+        >
+          Uncu.worklabs@gmail.com
+        </InteractiveHoverButton>
+
+        {/* Social Links */}
+        <div className="social-links">
+          <a href="https://linkedin.com">LinkedIn</a>
+          <a href="https://instagram.com">Instagram</a>
+          <a href="https://tiktok.com">TikTok</a>
+          <a href="https://github.com">GitHub</a>
+          <a href="https://dribbble.com">Dribbble</a>
+          <a href="https://substack.com">Substack</a>
         </div>
+      </div>
+
+      </div>
       </section>
 
       {/* ===== styles for hero caret + mobile stacking ===== */}
