@@ -51,8 +51,8 @@ export default function Page() {
   // StickyScroll content
   const stickyScrollContent = [
     {
-      title: "Web Development Excellence",
-      description: "We build production-ready websites and web applications with clean architecture and performance-first approach. Our solutions are scalable, maintainable, and built for the future.",
+      title: "Inside the Worklabs",
+      description: "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
       content: (
         <div className="h-full w-full bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-black">
           <div className="text-center">
@@ -217,14 +217,6 @@ export default function Page() {
 
         {/* =================== Inside the Worklabs =================== */}
         <section id="capabilities" className="scroll-mt-24 py-20">
-          <div className="mx-auto max-w-6xl px-6 mb-12">
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl text-center">
-              Inside the Worklabs
-            </h2>
-            <p className="mt-4 text-lg text-neutral-600 text-center max-w-2xl mx-auto">
-              Discover how we transform ideas into powerful digital solutions
-            </p>
-          </div>
           <StickyScroll content={stickyScrollContent} />
         </section>
 
