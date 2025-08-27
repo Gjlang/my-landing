@@ -54,7 +54,7 @@ export default function Page() {
       title: "Inside the Worklabs",
       description: "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
       content: (
-        <div className="h-full w-full bg-gradient-to-br from-cyan-500 to-emerald-500 flex items-center justify-center text-black">
+        <div className="h-full w-full bg-black flex items-center justify-center text-white">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Web Solutions</h3>
             <p className="text-sm">Responsive • Fast • Scalable</p>
@@ -66,7 +66,7 @@ export default function Page() {
       title: "Mobile App Innovation",
       description: "iOS and Android applications with native performance and user experience. We focus on offline-first patterns and smooth deployment processes.",
       content: (
-        <div className="h-full w-full bg-gradient-to-br from-pink-500 to-indigo-500 flex items-center justify-center text-black">
+        <div className="h-full w-full bg-black flex items-center justify-center text-white">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Mobile Apps</h3>
             <p className="text-sm">iOS • Android • Cross-platform</p>
@@ -78,7 +78,7 @@ export default function Page() {
       title: "AI & Software Solutions",
       description: "Cutting-edge AI integration and internal tools that automate workflows, boost accuracy, and transform how your business operates.",
       content: (
-        <div className="h-full w-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center text-black">
+        <div className="h-full w-full bg-black flex items-center justify-center text-white">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Solutions</h3>
             <p className="text-sm">LLM • RAG • Automation</p>
