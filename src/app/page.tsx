@@ -8,7 +8,7 @@ import {
 } from "@/components/magicui/scroll-based-velocity";
 
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
-import { TextReveal } from "@/components/magicui/text-reveal";
+import { MultiLineReveal } from "@/components/magicui/text-reveal"; // Import from text-reveal instead
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 type Project = {
@@ -18,22 +18,12 @@ type Project = {
   tag: "Web" | "Mobile" | "AI";
 };
 
-type Service = {
-  id: number;
-  name: string;
-  desc: string;
-  bullets: string[];
-  href: string;
-  icon?: React.ReactNode;
-};
 
 export default function Page() {
   const [currentService, setCurrentService] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  // ---- DATA (dummy) ----
   const servicesRotating = useMemo(
     () => ["Mobile App Development", "Software Development", "Web Development"],
     []
@@ -88,12 +78,6 @@ export default function Page() {
     },
   ];
 
-  // ---- Effects ----
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
-  // Typewriter for hero subtitle
   useEffect(() => {
     const currentText = servicesRotating[currentService];
     const timeout = setTimeout(() => {
@@ -126,25 +110,21 @@ export default function Page() {
       style={{
         minHeight: "100vh",
         backgroundColor: "white",
-        color: "black",
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
       className="relative"
     >
       {/* ============ FULL PAGE GRID LINES ============ */}
       <div
-        className="pointer-events-none fixed inset-0 opacity-[0.07] z-0"
-        style={{
-          background:
-            "repeating-linear-gradient(90deg,#000, #000 1px, transparent 1px, transparent 140px)",
-        }}
+        style={{ background: "repeating-linear-gradient(90deg,rgba(0,0,0,0.12), rgba(0,0,0,0.12) 1px, transparent 1px, transparent 140px)" }}
+        className="opacity-[0.03]"
       />
 
       {/* ============ ALL CONTENT WITH RELATIVE POSITIONING ============ */}
       <div className="relative z-10">
         {/* ============ HERO — Typography First ============ */}
         <section
-          className="relative min-h-[92vh] flex items-center pt-24"
+          className="relative min-h-[92vh] flex items-center pt-24 bg-white"
           aria-label="Hero"
         >
           <div className="relative mx-auto w-full max-w-[1200px] px-6">
@@ -182,46 +162,32 @@ export default function Page() {
           </div>
         </section>
         
-        {/* =================== ABOUT =================== */} 
-        <section 
-          id="about" 
-          className="scroll-mt-24" 
-        > 
-          <div className="mx-auto max-w-6xl px-6 py-20"> 
-            {/* Big Bold Title - Fixed to 3 lines */} 
-            <div className="text-center"> 
-              <h2 className="about-hero-title"> 
-                LEARN MORE
-                <br /> 
-                ABOUT US
-              </h2> 
-              
-              <TextReveal className="about-subtitle mx-auto mt-4 max-w-3xl text-lg sm:text-xl leading-7 text-neutral-700 text-center"> 
-                Uncu Worklabs isn’t just a worklabs we’re your launchpad
-                We design and build web, mobile, and AI solutions
-                so your ideas don’t just launch, they take off.
-              </TextReveal> 
-            </div> 
+       {/* =================== ABOUT =================== */} 
+        <section id="about" className="scroll-mt-24 bg-black text-white">
+          <div className="mx-auto max-w-6xl px-6 py-20 text-center">
+            <h2 className="about-hero-title">
+              LEARN MORE<br/>ABOUT US
+            </h2>
 
-            {/* Optional: Keep the CTA button if you want */} 
-            <div className="text-center"> 
-              <a 
-                href="/about" 
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100" 
-              > 
-                Learn more → 
-              </a> 
-            </div> 
-          </div> 
+            <MultiLineReveal
+              heightVh={120}        // tighter runway; tweak 100–140 as you like
+              stickyHeight="50vh"   // lines sit closer together
+              lines={[
+                "We're your launchpad.",
+                "We design and build web, mobile, and AI solutions",
+                "so your ideas don't just launch, they take off."
+              ]}
+            />
+          </div>
         </section>
 
         {/* =================== Inside the Worklabs =================== */}
-        <section id="capabilities" className="scroll-mt-24 py-20">
+        <section id="capabilities" className="scroll-mt-24 py-20 bg-white">
           <StickyScroll content={stickyScrollContent} />
         </section>
 
         {/* =================== PROJECTS =================== */}
-        <section id="projects" className="scroll-mt-24">
+        <section id="projects" className="scroll-mt-24 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-20">
             <div className="mb-6 flex items-center justify-between">
               <div>
@@ -282,42 +248,53 @@ export default function Page() {
         </section>
 
        {/* =================== CONTACT US =================== */}
-      <section id="contact" aria-label="Contact Us">
-        <div className="contact-container">
-          {/* ===== Scroll Velocity Opening ===== */}
-          <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
-            <ScrollVelocityRow baseVelocity={3} direction={1}>
-              · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 · あなたの発射を始めよう · ابدأ انطلاقتك ·
-              Inicia Tu Lanzamiento · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой запуск · Starte Deinen
-            </ScrollVelocityRow>
-          </ScrollVelocityContainer>
+        <section id="contact" aria-label="Contact Us" className="bg-white py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            {/* ===== Scroll Velocity Opening ===== */}
+            <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
+              <ScrollVelocityRow baseVelocity={3} direction={1}>
+                · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 · あなたの発射を始めよう · ابدأ انطلاقتك ·
+                Inicia Tu Lanzamiento · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой запуск · Starte Deinen
+              </ScrollVelocityRow>
+            </ScrollVelocityContainer>
 
-        <div className="contact-container">
-          {/* Email Button */}
-          <InteractiveHoverButton
-            onClick={() => (window.location.href = "mailto:Uncu.worklabs@gmail.com")}
-            className="contact-btn"
-          >
-            Uncu.worklabs@gmail.com
-          </InteractiveHoverButton>
+            <div className="text-center">
+              {/* Email Button */}
+              <InteractiveHoverButton
+                onClick={() => (window.location.href = "mailto:Uncu.worklabs@gmail.com")}
+                className="mb-8 inline-flex items-center rounded-full bg-black px-8 py-4 text-white text-lg font-semibold hover:bg-neutral-800 transition hover:scale-105"
+              >
+                Uncu.worklabs@gmail.com
+              </InteractiveHoverButton>
 
-          {/* Social Links */}
-          <div className="social-links">
-            <a href="https://linkedin.com">LinkedIn</a>
-            <a href="https://instagram.com">Instagram</a>
-            <a href="https://tiktok.com">TikTok</a>
-            <a href="https://github.com">GitHub</a>
-            <a href="https://dribbble.com">Dribbble</a>
-            <a href="https://substack.com">Substack</a>
+              {/* Social Links */}
+              <div className="flex flex-wrap justify-center gap-6 text-sm">
+                <a href="https://linkedin.com" className="text-neutral-600 hover:text-black transition">LinkedIn</a>
+                <a href="https://instagram.com" className="text-neutral-600 hover:text-black transition">Instagram</a>
+                <a href="https://tiktok.com" className="text-neutral-600 hover:text-black transition">TikTok</a>
+                <a href="https://github.com" className="text-neutral-600 hover:text-black transition">GitHub</a>
+                <a href="https://dribbble.com" className="text-neutral-600 hover:text-black transition">Dribbble</a>
+                <a href="https://substack.com" className="text-neutral-600 hover:text-black transition">Substack</a>
+              </div>
+            </div>
+
           </div>
-        </div>
-
-        </div>
         </section>
       </div>
 
       {/* ===== styles for hero caret + mobile stacking ===== */}
       <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
         @keyframes blink {
           0%,
           50% {

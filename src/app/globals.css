@@ -533,14 +533,21 @@ html {
   }
 }
 
-/* ===================== ABOUT SECTION - CLEAN 3 LINES ===================== */ 
+/* ===================== ABOUT SECTION ===================== */ 
+
+.about-section {
+  background-color: #000000; /* black background */
+  padding: 4rem 1rem;       /* some spacing top/bottom */
+  text-align: center;       /* center the text */
+}
+
 .about-hero-title { 
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; 
   font-weight: 900;  
   font-size: 8vw;
   line-height: 1.1;
   letter-spacing: -0.02em; 
-  color: #000000; 
+  color: #ffffff; 
   margin-bottom: 0rem;
   text-transform: uppercase;
   opacity: 0;
@@ -551,14 +558,13 @@ html {
  
 .about-subtitle { 
   font-size: 1.125rem; 
-  color: #000000; 
+  color: #ffffff; 
   font-weight: 400; 
   margin-bottom: 0rem; 
   max-width: 800px;
   margin-left: auto; 
   margin-right: auto; 
   line-height: 1.6; 
-  white-space: nowrap;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -573,7 +579,6 @@ html {
   
   .about-subtitle {
     font-size: 1.25rem;
-    white-space: normal;
   }
 } 
  
@@ -598,7 +603,6 @@ html {
     font-size: 1.5rem;
   }
 }
-
 /* ===================== SERVICES SECTION ===================== */
 #services {
   padding: 80px 24px;
