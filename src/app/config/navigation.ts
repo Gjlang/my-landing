@@ -13,8 +13,7 @@ export const navigationItems = [
     bgColor: "#0D0716",
     textColor: "#ffffff",
     links: [
-      { label: "Company", href: "/company", ariaLabel: "About Company" },
-      { label: "Careers", href: "/careers", ariaLabel: "About Careers" },
+      { label: "About", href: "/about", ariaLabel: "About Company" },
     ],
   },
   {

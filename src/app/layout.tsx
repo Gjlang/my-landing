@@ -35,8 +35,7 @@ export default function RootLayout({
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "Company", href: "/company", ariaLabel: "Learn about our company" },
-        { label: "Careers", href: "/careers", ariaLabel: "View career opportunities" }
+        { label: "About", href: "/about", ariaLabel: "Learn about our company" },
       ]
     },
     {

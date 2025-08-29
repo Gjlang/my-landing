@@ -4,6 +4,7 @@ import React, { useLayoutEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { GoArrowUpRight } from "react-icons/go";
 import Image from "next/image";
+import Link from "next/link";
 
 type CardNavLink = {
   label: string;
@@ -177,7 +178,7 @@ const CardNav: React.FC<CardNavProps> = ({
         className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
         style={{ backgroundColor: baseColor }}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
+        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-4 py-2 z-[2]">
           <div
             className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
             onClick={toggleMenu}
@@ -198,16 +199,18 @@ const CardNav: React.FC<CardNavProps> = ({
             />
           </div>
 
-          <div className="logo-container flex items-center md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 order-1 md:order-none">
-            <Image
-              src="/logo2.png"
-              alt={logoAlt}
-              width={112}
-              height={28}
-              className="logo h-[28px] w-auto"
-              priority
-            />
-          </div>
+          <div className="logo-container absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <Link href="/">
+                <Image
+                  src="/logo2.png"
+                  alt={logoAlt}
+                  width={112}
+                  height={28}
+                  className="logo h-[28px] w-auto cursor-pointer"
+                  priority
+                />
+              </Link>
+            </div>
 
           <button
             type="button"

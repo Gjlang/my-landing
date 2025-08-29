@@ -7,24 +7,26 @@ function cn(...classes: (string | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+// Consistent easing function
+const smoothEasing = [0.22, 1, 0.36, 1] as const;
+
 export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
   children: string;
-  heightVh?: number;     // runway height (default 120)
-  stickyHeight?: string; // sticky box height (default 100vh)
+  heightVh?: number;     // runway height (default 100)
+  stickyHeight?: string; // sticky box height (default 60vh)
 }
 
-// MultiLineReveal props for the new component
 type MultiLineRevealProps = {
   lines: string[];               // pass 3 lines here
   className?: string;
-  heightVh?: number;             // runway height (default 120)
-  stickyHeight?: string;         // sticky box height (default 60vh)
+  heightVh?: number;             // runway height (default 100)
+  stickyHeight?: string;         // sticky box height (default 55vh)
 };
 
 export const MultiLineReveal: FC<MultiLineRevealProps> = ({
   lines,
   className,
-  heightVh = 120,
+  heightVh = 100,
   stickyHeight = "60vh",
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -33,19 +35,10 @@ export const MultiLineReveal: FC<MultiLineRevealProps> = ({
     offset: ["start end", "end start"],
   });
 
-  // Dark vignette that breathes in/out slightly
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.85, 1, 1, 0.9]);
-
   return (
     <div ref={targetRef} className={cn(`relative h-[${heightVh}vh]`, className)}>
-      {/* Solid black with subtle vignette */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none"
-        style={{ opacity: bgOpacity }}
-      >
-        <div className="absolute inset-0 bg-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_40%,rgba(255,255,255,0.06)_0%,rgba(0,0,0,0.0)_60%)]" />
-      </motion.div>
+      {/* Transparent backdrop - removed vignette */}
+      <div className="fixed inset-0 pointer-events-none bg-transparent" />
 
       <div className="sticky top-0 flex items-center justify-center px-6" style={{ height: stickyHeight }}>
         <div className="mx-auto max-w-6xl text-center text-white">
@@ -62,19 +55,12 @@ export const MultiLineReveal: FC<MultiLineRevealProps> = ({
                 start={start}
                 end={end}
                 totalLines={lines.length}
+                delay={i * 80} // Staggered by 80ms
               />
             );
           })}
         </div>
       </div>
-
-      {/* Minimal scroll indicator */}
-      <motion.div
-        className="fixed bottom-8 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{ opacity: useTransform(scrollYProgress, [0, 0.12], [1, 0]) }}
-      >
-        <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/70 to-transparent" />
-      </motion.div>
     </div>
   );
 };
@@ -82,8 +68,8 @@ export const MultiLineReveal: FC<MultiLineRevealProps> = ({
 export const TextReveal: FC<TextRevealProps> = ({ 
   children, 
   className, 
-  heightVh = 120,
-  stickyHeight = "100vh"
+  heightVh = 100,
+  stickyHeight = "60vh"
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -98,22 +84,13 @@ export const TextReveal: FC<TextRevealProps> = ({
   // Split into lines (you can also split by periods, newlines, etc.)
   const lines = children.split(/[.!?]+/).filter(line => line.trim()).map(line => line.trim());
 
-  // Dark vignette that breathes in/out slightly
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0.85, 1, 1, 0.9]);
-
   return (
     <div ref={targetRef} className={cn(`relative h-[${heightVh}vh]`, className)}>
-      {/* Solid black with subtle vignette */}
-      <motion.div
-        className="fixed inset-0 pointer-events-none"
-        style={{ opacity: bgOpacity }}
-      >
-        <div className="absolute inset-0 bg-black" />
-        <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_40%,rgba(255,255,255,0.06)_0%,rgba(0,0,0,0.0)_60%)]" />
-      </motion.div>
+      {/* Transparent backdrop - removed vignette */}
+      <div className="fixed inset-0 pointer-events-none bg-transparent" />
 
       <div className="sticky top-0 flex items-center justify-center px-6" style={{ height: stickyHeight }}>
-        <div className="mx-auto max-w-6xl text-center text-white">
+        <div className="mx-auto max-w-6xl text-center text-neutral-900">
           {lines.map((line, i) => {
             const start = i / lines.length;
             const end = (i + 1) / lines.length;
@@ -127,19 +104,12 @@ export const TextReveal: FC<TextRevealProps> = ({
                 start={start}
                 end={end}
                 totalLines={lines.length}
+                delay={i * 80} // Staggered by 80ms
               />
             );
           })}
         </div>
       </div>
-
-      {/* Minimal scroll indicator */}
-      <motion.div
-        className="fixed bottom-8 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{ opacity: useTransform(scrollYProgress, [0, 0.12], [1, 0]) }}
-      >
-        <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/70 to-transparent" />
-      </motion.div>
     </div>
   );
 };
@@ -151,9 +121,18 @@ interface LineRevealProps {
   start: number;
   end: number;
   totalLines: number;
+  delay?: number;
 }
 
-const LineReveal: FC<LineRevealProps> = ({ line, lineIndex, progress, start, end, totalLines }) => {
+const LineReveal: FC<LineRevealProps> = ({ 
+  line, 
+  lineIndex, 
+  progress, 
+  start, 
+  end, 
+  totalLines, 
+  delay = 0 
+}) => {
   const lineOpacity = useTransform(progress, [start, end], [0, 1]);
   
   return (
@@ -162,11 +141,19 @@ const LineReveal: FC<LineRevealProps> = ({ line, lineIndex, progress, start, end
         lineIndex > 0 ? "mt-2 md:mt-3" : "",
         "font-semibold tracking-tight leading-tight",
         "text-2xl md:text-4xl lg:text-5xl xl:text-6xl",
-        "drop-shadow-[0_1px_12px_rgba(255,255,255,0.06)]"
+        "drop-shadow-[0_1px_12px_rgba(0,0,0,0.06)]",
+        "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
       )}
       style={{ 
         opacity: lineOpacity,
-        WebkitTextStroke: "0.3px rgba(255,255,255,0.15)" 
+        WebkitTextStroke: "0.3px rgba(0,0,0,0.15)" 
+      }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.6, 
+        ease: smoothEasing,
+        delay: delay / 1000
       }}
     >
       {line.split(/\s+/).map((word, wi) => {
@@ -179,6 +166,7 @@ const LineReveal: FC<LineRevealProps> = ({ line, lineIndex, progress, start, end
             key={wi} 
             progress={progress} 
             range={[wordStart, wordEnd]}
+            delay={delay + (wi * 60)} 
           >
             {word}
           </Word>
@@ -192,23 +180,24 @@ interface WordProps {
   children: string;
   progress: MotionValue<number>;
   range: [number, number];
+  delay?: number;
 }
 
-const Word: FC<WordProps> = ({ children, progress, range }) => {
-  // Stronger reveal & motion
+const Word: FC<WordProps> = ({ children, progress, range, delay = 0 }) => {
+  // Toned down motion - reduced values as specified
   const opacity = useTransform(progress, range, [0, 1]);
-  const y = useTransform(progress, range, [18, 0]);
-  const scale = useTransform(progress, range, [0.98, 1]);
-  const blur = useTransform(progress, range, [6, 0]);
+  const y = useTransform(progress, range, [12, 0]); // Reduced from 18
+  const scale = useTransform(progress, range, [0.995, 1]); // Reduced from 0.98
+  const blur = useTransform(progress, range, [4, 0]); // Reduced from 6
 
   return (
-    <span className="relative inline-block mr-3 md:mr-4 lg:mr-5">
+    <span className="relative inline-block mr-3 md:mr-4 lg:mr-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
       {/* Soft ghost behind for extra separation */}
-      <span className="absolute inset-0 translate-y-[2px] text-white/10 select-none pointer-events-none">
+      <span className="absolute inset-0 translate-y-[2px] text-white select-none pointer-events-none">
         {children}
       </span>
 
-      {/* Main animated text */}
+      {/* Main animated text with consistent easing */}
       <motion.span
         className="relative inline-block select-none"
         style={{
@@ -216,6 +205,13 @@ const Word: FC<WordProps> = ({ children, progress, range }) => {
           y,
           scale,
           filter: useTransform(blur, (v: number) => `blur(${v}px)`),
+        }}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: 0.5, 
+          ease: smoothEasing,
+          delay: delay / 1000
         }}
       >
         {children}

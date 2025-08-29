@@ -533,12 +533,11 @@ html {
   }
 }
 
-/* ===================== ABOUT SECTION ===================== */ 
-
+/* ===== ABOUT (light) ===== */
 .about-section {
-  background-color: #000000; /* black background */
-  padding: 4rem 1rem;       /* some spacing top/bottom */
-  text-align: center;       /* center the text */
+  background-color: #000000;
+  padding: 4rem 1rem;
+  text-align: center;
 }
 
 .about-hero-title { 
@@ -547,18 +546,18 @@ html {
   font-size: 8vw;
   line-height: 1.1;
   letter-spacing: -0.02em; 
-  color: #ffffff; 
+  color: #ffffff;      
   margin-bottom: 0rem;
   text-transform: uppercase;
   opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 0.2s;
+  transform: translateY(30px);  
+  animation: fadeInUp 0.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  animation-delay: 0.1s;
 } 
  
 .about-subtitle { 
   font-size: 1.125rem; 
-  color: #ffffff; 
+  color: #ffffff;       
   font-weight: 400; 
   margin-bottom: 0rem; 
   max-width: 800px;
@@ -566,43 +565,24 @@ html {
   margin-right: auto; 
   line-height: 1.6; 
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  animation-delay: 0.6s;
+  transform: translateY(20px);
+  animation: fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+  animation-delay: 0.25s;
 } 
  
-/* Desktop breakpoint */ 
 @media (min-width: 768px) { 
-  .about-hero-title { 
-    font-size: 6rem;
-  }
-  
-  .about-subtitle {
-    font-size: 1.25rem;
-  }
+  .about-hero-title { font-size: 6rem; }
+  .about-subtitle { font-size: 1.25rem; }
 } 
- 
-/* Large screens */ 
 @media (min-width: 1024px) { 
-  .about-hero-title { 
-    font-size: 7rem;
-  }
-  
-  .about-subtitle {
-    font-size: 1.375rem;
-  }
+  .about-hero-title { font-size: 7rem; }
+  .about-subtitle { font-size: 1.375rem; }
 } 
- 
-/* Ultra wide screens */ 
 @media (min-width: 1400px) { 
-  .about-hero-title { 
-    font-size: 8rem;
-  }
-  
-  .about-subtitle {
-    font-size: 1.5rem;
-  }
+  .about-hero-title { font-size: 8rem; }
+  .about-subtitle { font-size: 1.5rem; }
 }
+
 /* ===================== SERVICES SECTION ===================== */
 #services {
   padding: 80px 24px;

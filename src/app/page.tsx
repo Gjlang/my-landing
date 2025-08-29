@@ -8,7 +8,7 @@ import {
 } from "@/components/magicui/scroll-based-velocity";
 
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
-import { MultiLineReveal } from "@/components/magicui/text-reveal"; // Import from text-reveal instead
+import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
 type Project = {
@@ -17,7 +17,6 @@ type Project = {
   impact: string;
   tag: "Web" | "Mobile" | "AI";
 };
-
 
 export default function Page() {
   const [currentService, setCurrentService] = useState(0);
@@ -38,13 +37,12 @@ export default function Page() {
     { id: 6, title: "Forecasting Copilot", impact: "↓ −34% ops cost", tag: "AI" },
   ];
 
-  // StickyScroll content
   const stickyScrollContent = [
     {
       title: "Inside the Worklabs",
       description: "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
       content: (
-        <div className="h-full w-full bg-black flex items-center justify-center text-white">
+        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Web Solutions</h3>
             <p className="text-sm">Responsive • Fast • Scalable</p>
@@ -56,7 +54,7 @@ export default function Page() {
       title: "Mobile App Innovation",
       description: "iOS and Android applications with native performance and user experience. We focus on offline-first patterns and smooth deployment processes.",
       content: (
-        <div className="h-full w-full bg-black flex items-center justify-center text-white">
+        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Mobile Apps</h3>
             <p className="text-sm">iOS • Android • Cross-platform</p>
@@ -68,7 +66,7 @@ export default function Page() {
       title: "AI & Software Solutions",
       description: "Cutting-edge AI integration and internal tools that automate workflows, boost accuracy, and transform how your business operates.",
       content: (
-        <div className="h-full w-full bg-black flex items-center justify-center text-white">
+        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">AI Solutions</h3>
             <p className="text-sm">LLM • RAG • Automation</p>
@@ -96,14 +94,10 @@ export default function Page() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentService, servicesRotating]);
 
-  // ---- Local UI state (projects filter) ----
-  const [activeTag, setActiveTag] = useState<"All" | "Web" | "Mobile" | "AI">(
-    "All"
-  );
+  const [activeTag, setActiveTag] =
+    useState<"All" | "Web" | "Mobile" | "AI">("All");
   const filteredProjects =
-    activeTag === "All"
-      ? projectData
-      : projectData.filter((p) => p.tag === activeTag);
+    activeTag === "All" ? projectData : projectData.filter((p) => p.tag === activeTag);
 
   return (
     <div
@@ -114,41 +108,39 @@ export default function Page() {
       }}
       className="relative"
     >
-      {/* ============ FULL PAGE GRID LINES ============ */}
+      {/* faint grid lines */}
       <div
         style={{ background: "repeating-linear-gradient(90deg,rgba(0,0,0,0.12), rgba(0,0,0,0.12) 1px, transparent 1px, transparent 140px)" }}
         className="opacity-[0.03]"
       />
 
-      {/* ============ ALL CONTENT WITH RELATIVE POSITIONING ============ */}
       <div className="relative z-10">
-        {/* ============ HERO — Typography First ============ */}
+        {/* HERO */}
         <section
-          className="relative min-h-[92vh] flex items-center pt-24 bg-white"
+          className="relative min-h-[92vh] flex items-center pt-24 pb-16 bg-white"
           aria-label="Hero"
         >
           <div className="relative mx-auto w-full max-w-[1200px] px-6">
             <div className="flex items-center gap-16">
-              {/* Left side - Hero content */}
               <div className="flex-1 pr-8">
-                {/* giant headline */}
                 <h1
                   className="leading-[0.9] tracking-[-0.02em] font-extrabold opacity-0 animate-[fadeIn_.6s_ease-out_.1s_forwards]"
                 >
                   <div className="leading-[0.9] tracking-tight">
-                  <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-black">
-                    UNCU
-                  </span>
-                  <span className="block pl-[5.7ch] text-[clamp(3rem,8vw,8rem)] font-semibold text-black">
-                    WORKLABS
-                  </span>
-                </div>
+                    <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-black">
+                      UNCU
+                    </span>
+                    {/* align W under U using character padding */}
+                    <span className="block pl-[5.7ch] text-[clamp(3rem,8vw,8rem)] font-semibold text-black">
+                      WORKLABS
+                    </span>
+                  </div>
                 </h1>
-                {/* strapline */}
-                <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-black inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
+
+                <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-neutral-900 inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
                   A Creative Lab for Digital Solutions crafting websites, apps, and cutting-edge AI ready for the future.
                 </p>
-                {/* CTA */}
+
                 <div className="mt-10 flex">
                   <a
                     href="#contact"
@@ -162,7 +154,7 @@ export default function Page() {
           </div>
         </section>
         
-       {/* =================== ABOUT =================== */} 
+        {/* ABOUT */}
         <section id="about" className="scroll-mt-24 bg-black text-white">
           <div className="mx-auto max-w-6xl px-6 py-20 text-center">
             <h2 className="about-hero-title">
@@ -170,8 +162,8 @@ export default function Page() {
             </h2>
 
             <MultiLineReveal
-              heightVh={120}        // tighter runway; tweak 100–140 as you like
-              stickyHeight="50vh"   // lines sit closer together
+              heightVh={100}
+              stickyHeight="55vh"
               lines={[
                 "We're your launchpad.",
                 "We design and build web, mobile, and AI solutions",
@@ -181,12 +173,12 @@ export default function Page() {
           </div>
         </section>
 
-        {/* =================== Inside the Worklabs =================== */}
+        {/* CAPABILITIES */}
         <section id="capabilities" className="scroll-mt-24 py-20 bg-white">
           <StickyScroll content={stickyScrollContent} />
         </section>
 
-        {/* =================== PROJECTS =================== */}
+        {/* PROJECTS */}
         <section id="projects" className="scroll-mt-24 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-20">
             <div className="mb-6 flex items-center justify-between">
@@ -204,7 +196,7 @@ export default function Page() {
                     type="button"
                     onClick={() => setActiveTag(tag)}
                     className={[
-                      "rounded-full border px-4 py-2 text-sm font-medium transition",
+                      "rounded-full border px-4 py-2 text-sm font-medium transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                       activeTag === tag
                         ? "border-neutral-900 bg-neutral-900 text-white"
                         : "border-neutral-300 text-neutral-700 hover:bg-neutral-100",
@@ -222,7 +214,7 @@ export default function Page() {
                 <article
                   key={p.id}
                   tabIndex={0}
-                  className="group rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm outline-none ring-neutral-300 transition hover:-translate-y-0.5 hover:shadow-md focus:ring"
+                  className="group rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm outline-none ring-neutral-300 transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:shadow-md focus:ring"
                 >
                   <div className="mb-3 inline-flex rounded-full border border-neutral-300 px-3 py-1 text-xs font-semibold text-neutral-700">
                     {p.tag}
@@ -247,10 +239,9 @@ export default function Page() {
           </div>
         </section>
 
-       {/* =================== CONTACT US =================== */}
+        {/* CONTACT */}
         <section id="contact" aria-label="Contact Us" className="bg-white py-20">
           <div className="mx-auto max-w-6xl px-6">
-            {/* ===== Scroll Velocity Opening ===== */}
             <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
               <ScrollVelocityRow baseVelocity={3} direction={1}>
                 · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 · あなたの発射を始めよう · ابدأ انطلاقتك ·
@@ -259,15 +250,13 @@ export default function Page() {
             </ScrollVelocityContainer>
 
             <div className="text-center">
-              {/* Email Button */}
               <InteractiveHoverButton
                 onClick={() => (window.location.href = "mailto:Uncu.worklabs@gmail.com")}
-                className="mb-8 inline-flex items-center rounded-full bg-black px-8 py-4 text-white text-lg font-semibold hover:bg-neutral-800 transition hover:scale-105"
+                className="mb-8 inline-flex items-center rounded-full bg-white px-8 py-4 text-black text-lg font-semibold hover:bg-neutral-800 transition hover:scale-105"
               >
                 Uncu.worklabs@gmail.com
               </InteractiveHoverButton>
 
-              {/* Social Links */}
               <div className="flex flex-wrap justify-center gap-6 text-sm">
                 <a href="https://linkedin.com" className="text-neutral-600 hover:text-black transition">LinkedIn</a>
                 <a href="https://instagram.com" className="text-neutral-600 hover:text-black transition">Instagram</a>
@@ -277,35 +266,20 @@ export default function Page() {
                 <a href="https://substack.com" className="text-neutral-600 hover:text-black transition">Substack</a>
               </div>
             </div>
-
           </div>
         </section>
       </div>
 
-      {/* ===== styles for hero caret + mobile stacking ===== */}
+      {/* utilities */}
       <style jsx>{`
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes blink {
-          0%,
-          50% {
-            opacity: 1;
-          }
-          51%,
-          100% {
-            opacity: 0;
-          }
+          0%, 50% { opacity: 1; }
+          51%,100% { opacity: 0; }
         }
-
         @media (max-width: 768px) {
           .main-container {
             flex-direction: column !important;
