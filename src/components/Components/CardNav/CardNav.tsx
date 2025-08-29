@@ -178,47 +178,56 @@ const CardNav: React.FC<CardNavProps> = ({
         className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
         style={{ backgroundColor: baseColor }}
       >
-        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between px-4 py-2 z-[2]">
-          <div
-            className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px] order-2 md:order-none`}
-            onClick={toggleMenu}
-            role="button"
-            aria-label={isExpanded ? "Close menu" : "Open menu"}
-            tabIndex={0}
-            style={{ color: menuColor || "#000" }}
-          >
+        {/* Updated top bar with better centering */}
+        <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center px-4 py-2 z-[2]">
+          {/* Left side - Hamburger menu */}
+          <div className="flex-shrink-0 w-[46px] flex justify-start">
             <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
-              } group-hover:opacity-75`}
-            />
-            <div
-              className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
-                isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
-              } group-hover:opacity-75`}
-            />
+              className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
+              onClick={toggleMenu}
+              role="button"
+              aria-label={isExpanded ? "Close menu" : "Open menu"}
+              tabIndex={0}
+              style={{ color: menuColor || "#000" }}
+            >
+              <div
+                className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
+                  isHamburgerOpen ? "translate-y-[4px] rotate-45" : ""
+                } group-hover:opacity-75`}
+              />
+              <div
+                className={`hamburger-line w-[30px] h-[2px] bg-current transition-[transform,opacity,margin] duration-300 ease-linear [transform-origin:50%_50%] ${
+                  isHamburgerOpen ? "-translate-y-[4px] -rotate-45" : ""
+                } group-hover:opacity-75`}
+              />
+            </div>
           </div>
 
-          <div className="logo-container absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <Link href="/">
-                <Image
-                  src="/logo2.png"
-                  alt={logoAlt}
-                  width={112}
-                  height={28}
-                  className="logo h-[28px] w-auto cursor-pointer"
-                  priority
-                />
-              </Link>
-            </div>
+          {/* Center - Logo (perfectly centered between left and right elements) */}
+          <div className="flex-grow flex justify-center">
+            <Link href="/">
+              <Image
+                src="/logo2.png"
+                alt={logoAlt}
+                width={112}
+                height={28}
+                className="logo h-[28px] w-auto cursor-pointer"
+                priority
+              />
+            </Link>
+          </div>
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex border rounded-[calc(0.75rem-0.2rem)] px-4 h-full font-medium cursor-pointer transition-colors duration-300 bg-white text-black hover:bg-gray-100"
-          >
-            Get Started
-          </button>
+          {/* Right side - CTA Button (hidden on mobile, matches left side width on desktop) */}
+          <div className="flex-shrink-0 w-[46px] md:w-auto flex justify-end">
+            <button
+              type="button"
+              className="card-nav-cta-button hidden md:inline-flex border rounded-[calc(0.75rem-0.2rem)] px-4 h-full font-medium cursor-pointer transition-colors duration-300 bg-white text-black hover:bg-gray-100"
+            >
+              Get Started
+            </button>
+          </div>
         </div>
+
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
             isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"
