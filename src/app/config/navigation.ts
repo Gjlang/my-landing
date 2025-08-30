@@ -21,8 +21,7 @@ export const navigationItems = [
     bgColor: "#170D27",
     textColor: "#ffffff",
     links: [
-      { label: "Featured", href: "/projects/featured", ariaLabel: "Featured Projects" },
-      { label: "Case Studies", href: "/projects/case-studies", ariaLabel: "Project Case Studies" },
+      { label: "projects", href: "/projects/projects", ariaLabel: "projects Projects" },
     ],
   },
   {

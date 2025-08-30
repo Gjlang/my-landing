@@ -43,7 +43,7 @@ export default function RootLayout({
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "Featured", href: "/featured", ariaLabel: "View featured projects" }
+        { label: "Projects", href: "/projects", ariaLabel: "View Projects" }
       ]
     },
     {
@@ -51,7 +51,7 @@ export default function RootLayout({
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "Development", href: "/development", ariaLabel: "Our development services" }
+        { label: "Services", href: "/services", ariaLabel: "Our Services services" }
       ]
     }
   ];
