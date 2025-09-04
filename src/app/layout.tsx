@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import CardNav from "../components/Components/CardNav/CardNav";
+import Providers from "./providers"; // ✅ wrap the app with SessionProvider
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,47 +28,68 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  
-  // Define the navigation data
+  // ✅ Add a Login item so it shows up in your navbar
   const navItems = [
     {
       label: "About",
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "About", href: "/about", ariaLabel: "Learn about our company" },
-      ]
+        {
+          label: "About",
+          href: "/about",
+          ariaLabel: "Learn about our company",
+        },
+      ],
     },
     {
       label: "Projects",
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "Projects", href: "/projects", ariaLabel: "View Projects" }
-      ]
+        { label: "Projects", href: "/projects", ariaLabel: "View Projects" },
+      ],
     },
     {
       label: "Services",
       bgColor: "#000000",
       textColor: "#ffffff",
       links: [
-        { label: "Services", href: "/services", ariaLabel: "Our Services services" }
-      ]
-    }
+        {
+          label: "Services",
+          href: "/services",
+          ariaLabel: "Our Services services",
+        },
+      ],
+    },
+    {
+      label: "Account",
+      bgColor: "#000000",
+      textColor: "#ffffff",
+      // put Login here; CardNav will render it like other links
+      links: [
+        { label: "Login", href: "/login", ariaLabel: "Login to your account" },
+      ],
+    },
   ];
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased min-h-screen`}>
-        <CardNav 
-          logo="/logo2.png"
-          logoAlt="Uncu Worklabs"
-          items={navItems}
-          baseColor="#ffffff"
-          buttonBgColor="#22c55e"
-          buttonTextColor="#ffffff"
-        />
-        <main>{children}</main>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased min-h-screen`}
+      >
+        {/* ✅ SessionProvider wrapper fixes useSession() error on /login */}
+        <Providers>
+          <CardNav
+            logo="/logo2.png"
+            logoAlt="Uncu Worklabs"
+            items={navItems}
+            baseColor="#ffffff"
+            buttonBgColor="#22c55e"
+            buttonTextColor="#ffffff"
+          />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );

@@ -29,18 +29,49 @@ export default function Page() {
   );
 
   const projectData: Project[] = [
-    { id: 1, title: "KL Tourism Portal", impact: "↑ +38% session time", tag: "Web" },
-    { id: 2, title: "Retail POS Companion", impact: "↓ −27% checkout time", tag: "Mobile" },
-    { id: 3, title: "Smart Routing Engine", impact: "↑ +19% conversion", tag: "AI" },
-    { id: 4, title: "Media Booking System", impact: "↑ +2.1x bookings", tag: "Web" },
-    { id: 5, title: "Citizen Assist App", impact: "↑ +4.7 ★ store rating", tag: "Mobile" },
-    { id: 6, title: "Forecasting Copilot", impact: "↓ −34% ops cost", tag: "AI" },
+    {
+      id: 1,
+      title: "KL Tourism Portal",
+      impact: "↑ +38% session time",
+      tag: "Web",
+    },
+    {
+      id: 2,
+      title: "Retail POS Companion",
+      impact: "↓ −27% checkout time",
+      tag: "Mobile",
+    },
+    {
+      id: 3,
+      title: "Smart Routing Engine",
+      impact: "↑ +19% conversion",
+      tag: "AI",
+    },
+    {
+      id: 4,
+      title: "Media Booking System",
+      impact: "↑ +2.1x bookings",
+      tag: "Web",
+    },
+    {
+      id: 5,
+      title: "Citizen Assist App",
+      impact: "↑ +4.7 ★ store rating",
+      tag: "Mobile",
+    },
+    {
+      id: 6,
+      title: "Forecasting Copilot",
+      impact: "↓ −34% ops cost",
+      tag: "AI",
+    },
   ];
 
   const stickyScrollContent = [
     {
       title: "Inside the Worklabs",
-      description: "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
+      description:
+        "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
       content: (
         <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
@@ -52,7 +83,8 @@ export default function Page() {
     },
     {
       title: "Mobile App Innovation",
-      description: "iOS and Android applications with native performance and user experience. We focus on offline-first patterns and smooth deployment processes.",
+      description:
+        "iOS and Android applications with native performance and user experience. We focus on offline-first patterns and smooth deployment processes.",
       content: (
         <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
@@ -64,7 +96,8 @@ export default function Page() {
     },
     {
       title: "AI & Software Solutions",
-      description: "Cutting-edge AI integration and internal tools that automate workflows, boost accuracy, and transform how your business operates.",
+      description:
+        "Cutting-edge AI integration and internal tools that automate workflows, boost accuracy, and transform how your business operates.",
       content: (
         <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
           <div className="text-center">
@@ -78,26 +111,32 @@ export default function Page() {
 
   useEffect(() => {
     const currentText = servicesRotating[currentService];
-    const timeout = setTimeout(() => {
-      if (!isDeleting && displayText !== currentText) {
-        setDisplayText(currentText.slice(0, displayText.length + 1));
-      } else if (!isDeleting && displayText === currentText) {
-        setTimeout(() => setIsDeleting(true), 1400);
-      } else if (isDeleting && displayText !== "") {
-        setDisplayText(currentText.slice(0, displayText.length - 1));
-      } else if (isDeleting && displayText === "") {
-        setIsDeleting(false);
-        setCurrentService((prev) => (prev + 1) % servicesRotating.length);
-      }
-    }, isDeleting ? 50 : 100);
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting && displayText !== currentText) {
+          setDisplayText(currentText.slice(0, displayText.length + 1));
+        } else if (!isDeleting && displayText === currentText) {
+          setTimeout(() => setIsDeleting(true), 1400);
+        } else if (isDeleting && displayText !== "") {
+          setDisplayText(currentText.slice(0, displayText.length - 1));
+        } else if (isDeleting && displayText === "") {
+          setIsDeleting(false);
+          setCurrentService((prev) => (prev + 1) % servicesRotating.length);
+        }
+      },
+      isDeleting ? 50 : 100
+    );
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentService, servicesRotating]);
 
-  const [activeTag, setActiveTag] =
-    useState<"All" | "Web" | "Mobile" | "AI">("All");
+  const [activeTag, setActiveTag] = useState<"All" | "Web" | "Mobile" | "AI">(
+    "All"
+  );
   const filteredProjects =
-    activeTag === "All" ? projectData : projectData.filter((p) => p.tag === activeTag);
+    activeTag === "All"
+      ? projectData
+      : projectData.filter((p) => p.tag === activeTag);
 
   return (
     <div
@@ -110,7 +149,10 @@ export default function Page() {
     >
       {/* faint grid lines */}
       <div
-        style={{ background: "repeating-linear-gradient(90deg,rgba(0,0,0,0.12), rgba(0,0,0,0.12) 1px, transparent 1px, transparent 140px)" }}
+        style={{
+          background:
+            "repeating-linear-gradient(90deg,rgba(0,0,0,0.12), rgba(0,0,0,0.12) 1px, transparent 1px, transparent 140px)",
+        }}
         className="opacity-[0.03]"
       />
 
@@ -123,9 +165,7 @@ export default function Page() {
           <div className="relative mx-auto w-full max-w-[1200px] px-6">
             <div className="flex items-center gap-16">
               <div className="flex-1 pr-8">
-                <h1
-                  className="leading-[0.9] tracking-[-0.02em] font-extrabold opacity-0 animate-[fadeIn_.6s_ease-out_.1s_forwards]"
-                >
+                <h1 className="leading-[0.9] tracking-[-0.02em] font-extrabold opacity-0 animate-[fadeIn_.6s_ease-out_.1s_forwards]">
                   <div className="leading-[0.9] tracking-tight">
                     <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-black">
                       UNCU
@@ -138,7 +178,8 @@ export default function Page() {
                 </h1>
 
                 <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-neutral-900 inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
-                  A Creative Lab for Digital Solutions crafting websites, apps, and cutting-edge AI ready for the future.
+                  A Creative Lab for Digital Solutions crafting websites, apps,
+                  and cutting-edge AI ready for the future.
                 </p>
 
                 <div className="mt-10 flex">
@@ -153,12 +194,14 @@ export default function Page() {
             </div>
           </div>
         </section>
-        
+
         {/* ABOUT */}
         <section id="about" className="scroll-mt-24 bg-black text-white">
           <div className="mx-auto max-w-6xl px-6 py-20 text-center">
             <h2 className="about-hero-title">
-              LEARN MORE<br/>ABOUT US
+              LEARN MORE
+              <br />
+              ABOUT US
             </h2>
 
             <MultiLineReveal
@@ -167,7 +210,7 @@ export default function Page() {
               lines={[
                 "We're your launchpad.",
                 "We design and build web, mobile, and AI solutions",
-                "so your ideas don't just launch, they take off."
+                "so your ideas don't just launch, they take off.",
               ]}
             />
           </div>
@@ -240,30 +283,68 @@ export default function Page() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" aria-label="Contact Us" className="bg-white py-20">
+        <section
+          id="contact"
+          aria-label="Contact Us"
+          className="bg-white py-20"
+        >
           <div className="mx-auto max-w-6xl px-6">
             <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
               <ScrollVelocityRow baseVelocity={3} direction={1}>
-                · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 · あなたの発射を始めよう · ابدأ انطلاقتك ·
-                Inicia Tu Lanzamiento · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой запуск · Starte Deinen
+                · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
+                あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu Lanzamiento ·
+                Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой
+                запуск · Starte Deinen
               </ScrollVelocityRow>
             </ScrollVelocityContainer>
 
             <div className="text-center">
               <InteractiveHoverButton
-                onClick={() => (window.location.href = "mailto:Uncu.worklabs@gmail.com")}
+                onClick={() =>
+                  (window.location.href = "mailto:Uncu.worklabs@gmail.com")
+                }
                 className="mb-8 inline-flex items-center rounded-full bg-white px-8 py-4 text-black text-lg font-semibold hover:bg-neutral-800 transition hover:scale-105"
               >
                 Uncu.worklabs@gmail.com
               </InteractiveHoverButton>
 
               <div className="flex flex-wrap justify-center gap-6 text-sm">
-                <a href="https://linkedin.com" className="text-neutral-600 hover:text-black transition">LinkedIn</a>
-                <a href="https://instagram.com" className="text-neutral-600 hover:text-black transition">Instagram</a>
-                <a href="https://tiktok.com" className="text-neutral-600 hover:text-black transition">TikTok</a>
-                <a href="https://github.com" className="text-neutral-600 hover:text-black transition">GitHub</a>
-                <a href="https://dribbble.com" className="text-neutral-600 hover:text-black transition">Dribbble</a>
-                <a href="https://substack.com" className="text-neutral-600 hover:text-black transition">Substack</a>
+                <a
+                  href="https://linkedin.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://instagram.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  Instagram
+                </a>
+                <a
+                  href="https://tiktok.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  TikTok
+                </a>
+                <a
+                  href="https://github.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://dribbble.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  Dribbble
+                </a>
+                <a
+                  href="https://substack.com"
+                  className="text-neutral-600 hover:text-black transition"
+                >
+                  Substack
+                </a>
               </div>
             </div>
           </div>
@@ -273,12 +354,24 @@ export default function Page() {
       {/* utilities */}
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         @keyframes blink {
-          0%, 50% { opacity: 1; }
-          51%,100% { opacity: 0; }
+          0%,
+          50% {
+            opacity: 1;
+          }
+          51%,
+          100% {
+            opacity: 0;
+          }
         }
         @media (max-width: 768px) {
           .main-container {

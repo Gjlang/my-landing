@@ -53,7 +53,9 @@ const CardNav: React.FC<CardNavProps> = ({
 
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) {
-      const contentEl = navEl.querySelector(".card-nav-content") as HTMLElement | null;
+      const contentEl = navEl.querySelector(
+        ".card-nav-content"
+      ) as HTMLElement | null;
       if (contentEl) {
         const wasVisible = contentEl.style.visibility;
         const wasPointerEvents = contentEl.style.pointerEvents;
@@ -175,7 +177,9 @@ const CardNav: React.FC<CardNavProps> = ({
     >
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? "open" : ""} block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
+        className={`card-nav ${
+          isExpanded ? "open" : ""
+        } block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]`}
         style={{ backgroundColor: baseColor }}
       >
         {/* Updated top bar with better centering */}
@@ -183,7 +187,9 @@ const CardNav: React.FC<CardNavProps> = ({
           {/* Left side - Hamburger menu */}
           <div className="flex-shrink-0 w-[46px] flex justify-start">
             <div
-              className={`hamburger-menu ${isHamburgerOpen ? "open" : ""} group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
+              className={`hamburger-menu ${
+                isHamburgerOpen ? "open" : ""
+              } group h-full flex flex-col items-center justify-center cursor-pointer gap-[6px]`}
               onClick={toggleMenu}
               role="button"
               aria-label={isExpanded ? "Close menu" : "Open menu"}
@@ -219,18 +225,20 @@ const CardNav: React.FC<CardNavProps> = ({
 
           {/* Right side - CTA Button (hidden on mobile, matches left side width on desktop) */}
           <div className="flex-shrink-0 w-[46px] md:w-auto flex justify-end">
-            <button
-              type="button"
+            <Link
+              href="/login"
               className="card-nav-cta-button hidden md:inline-flex border rounded-[calc(0.75rem-0.2rem)] px-4 h-full font-medium cursor-pointer transition-colors duration-300 bg-white text-black hover:bg-gray-100"
             >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 flex flex-col items-stretch gap-2 justify-start z-[1] ${
-            isExpanded ? "visible pointer-events-auto" : "invisible pointer-events-none"
+            isExpanded
+              ? "visible pointer-events-auto"
+              : "invisible pointer-events-none"
           } md:flex-row md:items-end md:gap-[12px]`}
           aria-hidden={!isExpanded}
         >
@@ -252,7 +260,10 @@ const CardNav: React.FC<CardNavProps> = ({
                     href={lnk.href}
                     aria-label={lnk.ariaLabel}
                   >
-                    <GoArrowUpRight className="nav-card-link-icon shrink-0" aria-hidden="true" />
+                    <GoArrowUpRight
+                      className="nav-card-link-icon shrink-0"
+                      aria-hidden="true"
+                    />
                     {lnk.label}
                   </a>
                 ))}
