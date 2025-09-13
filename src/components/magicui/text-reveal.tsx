@@ -12,15 +12,15 @@ const smoothEasing = [0.22, 1, 0.36, 1] as const;
 
 export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
   children: string;
-  heightVh?: number;     // runway height (default 100)
+  heightVh?: number; // runway height (default 100)
   stickyHeight?: string; // sticky box height (default 60vh)
 }
 
 type MultiLineRevealProps = {
-  lines: string[];               // pass 3 lines here
+  lines: string[]; // pass 3 lines here
   className?: string;
-  heightVh?: number;             // runway height (default 100)
-  stickyHeight?: string;         // sticky box height (default 55vh)
+  heightVh?: number; // runway height (default 100)
+  stickyHeight?: string; // sticky box height (default 55vh)
 };
 
 export const MultiLineReveal: FC<MultiLineRevealProps> = ({
@@ -36,16 +36,22 @@ export const MultiLineReveal: FC<MultiLineRevealProps> = ({
   });
 
   return (
-    <div ref={targetRef} className={cn(`relative h-[${heightVh}vh]`, className)}>
+    <div
+      ref={targetRef}
+      className={cn(`relative h-[${heightVh}vh]`, className)}
+    >
       {/* Transparent backdrop - removed vignette */}
       <div className="fixed inset-0 pointer-events-none bg-transparent" />
 
-      <div className="sticky top-0 flex items-center justify-center px-6" style={{ height: stickyHeight }}>
-        <div className="mx-auto max-w-6xl text-center text-white">
+      <div
+        className="sticky top-0 flex items-center justify-center px-6"
+        style={{ height: stickyHeight }}
+      >
+        <div className={cn("mx-auto max-w-6xl text-center", className)}>
           {lines.map((line, i) => {
             const start = i / lines.length;
             const end = (i + 1) / lines.length;
-            
+
             return (
               <LineReveal
                 key={i}
@@ -65,11 +71,11 @@ export const MultiLineReveal: FC<MultiLineRevealProps> = ({
   );
 };
 
-export const TextReveal: FC<TextRevealProps> = ({ 
-  children, 
-  className, 
+export const TextReveal: FC<TextRevealProps> = ({
+  children,
+  className,
   heightVh = 100,
-  stickyHeight = "60vh"
+  stickyHeight = "60vh",
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
@@ -82,19 +88,28 @@ export const TextReveal: FC<TextRevealProps> = ({
   }
 
   // Split into lines (you can also split by periods, newlines, etc.)
-  const lines = children.split(/[.!?]+/).filter(line => line.trim()).map(line => line.trim());
+  const lines = children
+    .split(/[.!?]+/)
+    .filter((line) => line.trim())
+    .map((line) => line.trim());
 
   return (
-    <div ref={targetRef} className={cn(`relative h-[${heightVh}vh]`, className)}>
+    <div
+      ref={targetRef}
+      className={cn(`relative h-[${heightVh}vh]`, className)}
+    >
       {/* Transparent backdrop - removed vignette */}
       <div className="fixed inset-0 pointer-events-none bg-transparent" />
 
-      <div className="sticky top-0 flex items-center justify-center px-6" style={{ height: stickyHeight }}>
+      <div
+        className="sticky top-0 flex items-center justify-center px-6"
+        style={{ height: stickyHeight }}
+      >
         <div className="mx-auto max-w-6xl text-center text-neutral-900">
           {lines.map((line, i) => {
             const start = i / lines.length;
             const end = (i + 1) / lines.length;
-            
+
             return (
               <LineReveal
                 key={i}
@@ -124,17 +139,17 @@ interface LineRevealProps {
   delay?: number;
 }
 
-const LineReveal: FC<LineRevealProps> = ({ 
-  line, 
-  lineIndex, 
-  progress, 
-  start, 
-  end, 
-  totalLines, 
-  delay = 0 
+const LineReveal: FC<LineRevealProps> = ({
+  line,
+  lineIndex,
+  progress,
+  start,
+  end,
+  totalLines,
+  delay = 0,
 }) => {
   const lineOpacity = useTransform(progress, [start, end], [0, 1]);
-  
+
   return (
     <motion.p
       className={cn(
@@ -142,31 +157,34 @@ const LineReveal: FC<LineRevealProps> = ({
         "font-semibold tracking-tight leading-tight",
         "text-2xl md:text-4xl lg:text-5xl xl:text-6xl",
         "drop-shadow-[0_1px_12px_rgba(0,0,0,0.06)]",
-        "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "text-current" // Inherit warna dari parent
       )}
-      style={{ 
+      style={{
         opacity: lineOpacity,
-        WebkitTextStroke: "0.3px rgba(0,0,0,0.15)" 
+        WebkitTextStroke: "0px transparent", // Nonaktifin stroke
       }}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         ease: smoothEasing,
-        delay: delay / 1000
+        delay: delay / 1000,
       }}
     >
       {line.split(/\s+/).map((word, wi) => {
         const words = line.split(/\s+/);
-        const wordStart = start + (wi / Math.max(1, words.length)) * (1 / totalLines);
-        const wordEnd = wordStart + (1 / Math.max(1, words.length)) * (1 / totalLines);
-        
+        const wordStart =
+          start + (wi / Math.max(1, words.length)) * (1 / totalLines);
+        const wordEnd =
+          wordStart + (1 / Math.max(1, words.length)) * (1 / totalLines);
+
         return (
-          <Word 
-            key={wi} 
-            progress={progress} 
+          <Word
+            key={wi}
+            progress={progress}
             range={[wordStart, wordEnd]}
-            delay={delay + (wi * 60)} 
+            delay={delay + wi * 60}
           >
             {word}
           </Word>
@@ -193,7 +211,7 @@ const Word: FC<WordProps> = ({ children, progress, range, delay = 0 }) => {
   return (
     <span className="relative inline-block mr-3 md:mr-4 lg:mr-5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
       {/* Soft ghost behind for extra separation */}
-      <span className="absolute inset-0 translate-y-[2px] text-white select-none pointer-events-none">
+      <span className="absolute inset-0 translate-y-[2px] text-current opacity-10 select-none pointer-events-none">
         {children}
       </span>
 
@@ -208,10 +226,10 @@ const Word: FC<WordProps> = ({ children, progress, range, delay = 0 }) => {
         }}
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ 
-          duration: 0.5, 
+        transition={{
+          duration: 0.5,
           ease: smoothEasing,
-          delay: delay / 1000
+          delay: delay / 1000,
         }}
       >
         {children}

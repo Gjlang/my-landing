@@ -142,7 +142,6 @@ export default function Page() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "white",
         fontFamily: "system-ui, -apple-system, sans-serif",
       }}
       className="relative"
@@ -159,25 +158,35 @@ export default function Page() {
       <div className="relative z-10">
         {/* HERO */}
         <section
-          className="relative min-h-[92vh] flex items-center pt-24 pb-16 bg-white"
+          className="relative min-h-[92vh] flex items-center pt-24 pb-16 text-white overflow-hidden"
           aria-label="Hero"
         >
-          <div className="relative mx-auto w-full max-w-[1200px] px-6">
+          {/* Background image */}
+          <img
+            src="/main_background.png"
+            alt="Blueprint background"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+
+          {/* Overlay opsional (supaya teks lebih kebaca) */}
+          <div className="absolute inset-0 bg-black/30"></div>
+
+          {/* Content */}
+          <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6">
             <div className="flex items-center gap-16">
               <div className="flex-1 pr-8">
                 <h1 className="leading-[0.9] tracking-[-0.02em] font-extrabold opacity-0 animate-[fadeIn_.6s_ease-out_.1s_forwards]">
                   <div className="leading-[0.9] tracking-tight">
-                    <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-black">
+                    <span className="block text-[clamp(6rem,12vw,12rem)] font-bold text-white">
                       UNCU
                     </span>
-                    {/* align W under U using character padding */}
-                    <span className="block pl-[5.7ch] text-[clamp(3rem,8vw,8rem)] font-semibold text-black">
+                    <span className="block pl-[5.7ch] text-[clamp(3rem,8vw,8rem)] font-semibold text-white">
                       WORKLABS
                     </span>
                   </div>
                 </h1>
 
-                <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-neutral-900 inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
+                <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-white inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
                   A Creative Lab for Digital Solutions crafting websites, apps,
                   and cutting-edge AI ready for the future.
                 </p>
@@ -196,9 +205,9 @@ export default function Page() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="scroll-mt-24 bg-black text-white">
+        <section id="about" className="scroll-mt-24 bg-white text-black">
           <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-            <h2 className="about-hero-title">
+            <h2 className="text-black font-extrabold text-4xl md:text-6xl tracking-tight">
               LEARN MORE
               <br />
               ABOUT US
@@ -207,6 +216,7 @@ export default function Page() {
             <MultiLineReveal
               heightVh={100}
               stickyHeight="55vh"
+              className=""
               lines={[
                 "We're your launchpad.",
                 "We design and build web, mobile, and AI solutions",
