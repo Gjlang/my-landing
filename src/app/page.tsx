@@ -11,6 +11,12 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
+// 👉 NEW: import the menu
+import StaggeredMenu, {
+  StaggeredMenuItem,
+  StaggeredMenuSocialItem,
+} from "@/components/StaggeredMenu";
+
 type Project = {
   id: number;
   title: string;
@@ -19,6 +25,28 @@ type Project = {
 };
 
 export default function Page() {
+  // 👉 NEW: menu data
+  const menuItems: StaggeredMenuItem[] = [
+    { label: "Home", ariaLabel: "Go to Home", link: "/" },
+    { label: "About", ariaLabel: "Go to About", link: "#about" },
+    {
+      label: "Capabilities",
+      ariaLabel: "Go to Capabilities",
+      link: "#capabilities",
+    },
+    { label: "Projects", ariaLabel: "Go to Projects", link: "#projects" },
+    { label: "Contact", ariaLabel: "Go to Contact", link: "#contact" },
+  ];
+
+  const socials: StaggeredMenuSocialItem[] = [
+    { label: "LinkedIn", link: "https://linkedin.com" },
+    { label: "Instagram", link: "https://instagram.com" },
+    { label: "TikTok", link: "https://tiktok.com" },
+    { label: "GitHub", link: "https://github.com" },
+    { label: "Dribbble", link: "https://dribbble.com" },
+    { label: "Substack", link: "https://substack.com" },
+  ];
+
   const [currentService, setCurrentService] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -146,6 +174,21 @@ export default function Page() {
       }}
       className="relative"
     >
+      {/* 👉 NEW: Global menu mounted at top (z-40), above hero (z-10) */}
+      <StaggeredMenu
+        position="right"
+        colors={["#22255b", "#4bbbed", "#d33831"]}
+        accentColor="#4bbbed"
+        logoUrl="/logo2.png"
+        items={menuItems}
+        socialItems={socials}
+        displaySocials={true}
+        displayItemNumbering={true}
+        menuButtonColor="#ffffff"
+        openMenuButtonColor="#ffffff"
+        changeMenuColorOnOpen={true}
+      />
+
       {/* faint grid lines */}
       <div
         style={{
@@ -168,7 +211,7 @@ export default function Page() {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Overlay opsional (supaya teks lebih kebaca) */}
+          {/* Overlay */}
           <div className="absolute inset-0 bg-black/30"></div>
 
           {/* Content */}
