@@ -174,21 +174,6 @@ export default function Page() {
       }}
       className="relative"
     >
-      {/* 👉 NEW: Global menu mounted at top (z-40), above hero (z-10) */}
-      <StaggeredMenu
-        position="right"
-        colors={["#22255b", "#4bbbed", "#d33831"]}
-        accentColor="#4bbbed"
-        logoUrl="/logo2.png"
-        items={menuItems}
-        socialItems={socials}
-        displaySocials={true}
-        displayItemNumbering={true}
-        menuButtonColor="#ffffff"
-        openMenuButtonColor="#ffffff"
-        changeMenuColorOnOpen={true}
-      />
-
       {/* faint grid lines */}
       <div
         style={{
