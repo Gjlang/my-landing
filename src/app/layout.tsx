@@ -57,7 +57,7 @@ export default function RootLayout({
         <Providers>
           {/* ✅ GANTI DENGAN STAGGERED MENU */}
           <StaggeredMenu
-            position="right"
+            position="left"
             colors={["#22255b", "#4bbbed", "#d33831"]}
             accentColor="#4bbbed"
             logoUrl="/logo2.png"

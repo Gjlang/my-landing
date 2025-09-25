@@ -11,12 +11,6 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 
-// 👉 NEW: import the menu
-import StaggeredMenu, {
-  StaggeredMenuItem,
-  StaggeredMenuSocialItem,
-} from "@/components/StaggeredMenu";
-
 type Project = {
   id: number;
   title: string;
@@ -26,26 +20,6 @@ type Project = {
 
 export default function Page() {
   // 👉 NEW: menu data
-  const menuItems: StaggeredMenuItem[] = [
-    { label: "Home", ariaLabel: "Go to Home", link: "/" },
-    { label: "About", ariaLabel: "Go to About", link: "#about" },
-    {
-      label: "Capabilities",
-      ariaLabel: "Go to Capabilities",
-      link: "#capabilities",
-    },
-    { label: "Projects", ariaLabel: "Go to Projects", link: "#projects" },
-    { label: "Contact", ariaLabel: "Go to Contact", link: "#contact" },
-  ];
-
-  const socials: StaggeredMenuSocialItem[] = [
-    { label: "LinkedIn", link: "https://linkedin.com" },
-    { label: "Instagram", link: "https://instagram.com" },
-    { label: "TikTok", link: "https://tiktok.com" },
-    { label: "GitHub", link: "https://github.com" },
-    { label: "Dribbble", link: "https://dribbble.com" },
-    { label: "Substack", link: "https://substack.com" },
-  ];
 
   const [currentService, setCurrentService] = useState(0);
   const [displayText, setDisplayText] = useState("");
