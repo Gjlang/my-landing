@@ -1,4 +1,5 @@
 "use client";
+import "./StaggeredMenu.css";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
@@ -384,7 +385,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <div
       className={(className ? className + " " : "") + "staggered-menu-wrapper"}
-      style={accentColor ? { ["--sm-accent" as any]: accentColor } : undefined}
+      style={
+        accentColor
+          ? ({ ["--sm-accent" as const]: accentColor } as React.CSSProperties)
+          : undefined
+      }
       data-position={position}
       data-open={open || undefined}
     >
