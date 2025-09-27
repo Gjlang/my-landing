@@ -295,67 +295,74 @@ export default function Page() {
         </section>
 
         {/* CONTACT */}
-        <section
-          id="contact"
-          aria-label="Contact Us"
-          className="bg-white py-20"
-        >
-          <div className="mx-auto max-w-6xl px-6">
-            <ScrollVelocityContainer className="text-4xl md:text-7xl font-bold mb-8">
-              <ScrollVelocityRow baseVelocity={3} direction={1}>
-                · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
-                あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu Lanzamiento ·
-                Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни свой
-                запуск · Starte Deinen
+        <section id="contact" aria-label="Contact Us" className="py-0">
+          {/* Full-bleed marquee acts as the stage */}
+          <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw]">
+            <ScrollVelocityContainer className="h-screen w-full flex items-center">
+              <ScrollVelocityRow
+                baseVelocity={1.2}
+                direction={1}
+                className="py-4"
+              >
+                <span className="px-[4vw] text-[22vw] md:text-[16vw] leading-[0.85] tracking-[-0.04em] font-extrabold uppercase">
+                  · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
+                  あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu Lanzamiento
+                  · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни
+                  свой запуск · Starte Deinen
+                </span>
               </ScrollVelocityRow>
             </ScrollVelocityContainer>
 
-            <div className="text-center">
-              <InteractiveHoverButton
-                onClick={() =>
-                  (window.location.href = "mailto:Uncu.worklabs@gmail.com")
-                }
-                className="mb-8 inline-flex items-center rounded-full bg-white px-8 py-4 text-black text-lg font-semibold hover:bg-neutral-800 transition hover:scale-105"
-              >
-                Uncu.worklabs@gmail.com
-              </InteractiveHoverButton>
-
-              <div className="flex flex-wrap justify-center gap-6 text-sm">
+            {/* Logo row OVERLAY (visible on white bg) */}
+            <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 w-full z-20">
+              <div className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-center gap-16 px-6">
+                <a
+                  href="mailto:Uncu.worklabs@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Email"
+                >
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
+                    alt=""
+                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                  />
+                </a>
                 <a
                   href="https://linkedin.com"
-                  className="text-neutral-600 hover:text-black transition"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                 >
-                  LinkedIn
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                    alt=""
+                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                  />
                 </a>
                 <a
                   href="https://instagram.com"
-                  className="text-neutral-600 hover:text-black transition"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
                 >
-                  Instagram
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  className="text-neutral-600 hover:text-black transition"
-                >
-                  TikTok
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                    alt=""
+                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                  />
                 </a>
                 <a
                   href="https://github.com"
-                  className="text-neutral-600 hover:text-black transition"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
                 >
-                  GitHub
-                </a>
-                <a
-                  href="https://dribbble.com"
-                  className="text-neutral-600 hover:text-black transition"
-                >
-                  Dribbble
-                </a>
-                <a
-                  href="https://substack.com"
-                  className="text-neutral-600 hover:text-black transition"
-                >
-                  Substack
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
+                    alt=""
+                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                  />
                 </a>
               </div>
             </div>
