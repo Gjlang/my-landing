@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
+// at top of the file
+import Image from "next/image";
 
 import {
   ScrollVelocityContainer,
@@ -313,57 +315,89 @@ export default function Page() {
               </ScrollVelocityRow>
             </ScrollVelocityContainer>
 
-            {/* Logo row OVERLAY (visible on white bg) */}
-            <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 w-full z-20">
-              <div className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-center gap-16 px-6">
-                <a
-                  href="mailto:Uncu.worklabs@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Email"
+            {/* Full-bleed marquee wrapper */}
+            <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw] z-0">
+              <ScrollVelocityContainer className="h-screen w-full flex items-center">
+                <ScrollVelocityRow
+                  baseVelocity={1.2}
+                  direction={1}
+                  className="py-4"
                 >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
-                    alt=""
-                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
-                  />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-                    alt=""
-                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
-                  />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
-                    alt=""
-                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
-                  />
-                </a>
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
-                    alt=""
-                    className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
-                  />
-                </a>
+                  <span className="px-[4vw] text-[22vw] md:text-[16vw] leading-[0.85] tracking-[-0.04em] font-extrabold uppercase">
+                    · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
+                    あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu
+                    Lanzamiento · Commence Ton Lancement · 당신의 출발을
+                    시작하세요 · Начни свой запуск · Starte Deinen
+                  </span>
+                </ScrollVelocityRow>
+              </ScrollVelocityContainer>
+
+              {/* Logo row OVERLAY (on top, clickable) */}
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full z-50">
+                <div className="mx-auto flex max-w-5xl items-center justify-center gap-16 px-6">
+                  <a
+                    href="mailto:Uncu.worklabs@gmail.com"
+                    aria-label="Email"
+                    className="inline-block cursor-pointer"
+                  >
+                    <Image
+                      src="/logo2.png"
+                      alt="Email"
+                      width={120}
+                      height={40}
+                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                      priority
+                    />
+                  </a>
+
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="inline-block cursor-pointer"
+                  >
+                    <Image
+                      src="/logo2.png"
+                      alt="LinkedIn"
+                      width={120}
+                      height={40}
+                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    />
+                  </a>
+
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="inline-block cursor-pointer"
+                  >
+                    <Image
+                      src="/logo2.png"
+                      alt="Instagram"
+                      width={120}
+                      height={40}
+                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    />
+                  </a>
+
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="inline-block cursor-pointer"
+                  >
+                    <Image
+                      src="/logo2.png"
+                      alt="GitHub"
+                      width={120}
+                      height={40}
+                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
