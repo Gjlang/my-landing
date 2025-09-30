@@ -305,92 +305,150 @@ export default function Page() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" aria-label="Contact Us" className="py-0">
-          {/* Full-bleed marquee acts as the stage */}
-          <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw]">
-            {/* Full-bleed marquee wrapper */}
-            <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw] z-0">
-              <ScrollVelocityContainer className="h-screen w-full flex items-center">
-                <ScrollVelocityRow
-                  baseVelocity={1.2}
-                  direction={1}
-                  className="py-4"
+        <section
+          id="contact"
+          aria-label="Contact Us"
+          className="relative py-0 bg-white"
+        >
+          {/* Full-bleed marquee */}
+          <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw]">
+            <ScrollVelocityContainer className="h-screen w-full flex items-center">
+              <ScrollVelocityRow
+                baseVelocity={1.2}
+                direction={1}
+                className="py-4"
+              >
+                <span className="px-[4vw] text-[22vw] md:text-[16vw] leading-[0.85] tracking-[-0.04em] font-extrabold uppercase">
+                  · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
+                  あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu Lanzamiento
+                  · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни
+                  свой запуск · Starte Deinen
+                </span>
+              </ScrollVelocityRow>
+            </ScrollVelocityContainer>
+
+            {/* Icon row overlay */}
+            {/* pointer-events-none on wrapper so the marquee underneath can still scroll;
+            pointer-events-auto on the actual links so they remain clickable */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-8 z-50">
+              <div className="pointer-events-auto mx-auto flex max-w-5xl items-center justify-center gap-10 px-6 text-neutral-900">
+                {/* Email */}
+                <a
+                  href="mailto:Uncu.worklabs@gmail.com"
+                  aria-label="Email"
+                  className="group"
                 >
-                  <span className="px-[4vw] text-[22vw] md:text-[16vw] leading-[0.85] tracking-[-0.04em] font-extrabold uppercase">
-                    · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
-                    あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu
-                    Lanzamiento · Commence Ton Lancement · 당신의 출발을
-                    시작하세요 · Начни свой запуск · Starte Deinen
-                  </span>
-                </ScrollVelocityRow>
-              </ScrollVelocityContainer>
-
-              {/* Logo row OVERLAY (on top, clickable) */}
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-full z-50">
-                <div className="mx-auto flex max-w-5xl items-center justify-center gap-16 px-6">
-                  <a
-                    href="mailto:Uncu.worklabs@gmail.com"
-                    aria-label="Email"
-                    className="inline-block cursor-pointer"
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    className="opacity-80 group-hover:opacity-100 transition"
+                    aria-hidden="true"
                   >
-                    <Image
-                      src="/logo2.png"
-                      alt="Email"
-                      width={120}
-                      height={40}
-                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
-                      priority
+                    <title>Email</title>
+                    <rect
+                      x="4"
+                      y="6"
+                      width="16"
+                      height="12"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      rx="1.5"
                     />
-                  </a>
+                    <path
+                      d="M22 6L12 13 2 6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </a>
 
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className="inline-block cursor-pointer"
+                {/* LinkedIn */}
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="group"
+                >
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    className="opacity-80 group-hover:opacity-100 transition"
+                    aria-hidden="true"
                   >
-                    <Image
-                      src="/logo2.png"
-                      alt="LinkedIn"
-                      width={120}
-                      height={40}
-                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    <title>LinkedIn</title>
+                    <path
+                      d="M4.98 3.5A2.5 2.5 0 107.5 6a2.5 2.5 0 00-2.52-2.5zM3.5 8.5h3v12h-3zM10 8.5h2.8v1.7h.04A3.1 3.1 0 0115.6 8.7c2.94 0 3.48 1.94 3.48 4.46v7.36h-3v-6.52c0-1.56-.03-3.56-2.17-3.56-2.18 0-2.52 1.7-2.52 3.45v6.63h-3z"
+                      fill="currentColor"
                     />
-                  </a>
+                  </svg>
+                </a>
 
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="inline-block cursor-pointer"
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="group"
+                >
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    className="opacity-80 group-hover:opacity-100 transition"
+                    aria-hidden="true"
                   >
-                    <Image
-                      src="/logo2.png"
-                      alt="Instagram"
-                      width={120}
-                      height={40}
-                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    <title>Instagram</title>
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="5"
+                      ry="5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
                     />
-                  </a>
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                    <circle cx="17" cy="7" r="1.2" fill="currentColor" />
+                  </svg>
+                </a>
 
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className="inline-block cursor-pointer"
+                {/* GitHub */}
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="group"
+                >
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    className="opacity-80 group-hover:opacity-100 transition"
+                    aria-hidden="true"
                   >
-                    <Image
-                      src="/logo2.png"
-                      alt="GitHub"
-                      width={120}
-                      height={40}
-                      className="h-8 md:h-10 w-auto brightness-0 opacity-80 hover:opacity-100 transition"
+                    <title>GitHub</title>
+                    <path
+                      d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.68c-2.78.61-3.37-1.19-3.37-1.19a2.65 2.65 0 00-1.11-1.47c-.91-.62.07-.61.07-.61a2.1 2.1 0 011.54 1.04 2.14 2.14 0 002.93.84 2.13 2.13 0 01.64-1.34c-2.22-.25-4.56-1.11-4.56-4.95a3.86 3.86 0 011.03-2.68 3.58 3.58 0 01.1-2.65s.84-.27 2.75 1.02a9.48 9.48 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.37.84.4 1.79.1 2.65a3.86 3.86 0 011.03 2.68c0 3.85-2.34 4.7-4.57 4.95a2.39 2.39 0 01.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0012 2z"
+                      fill="currentColor"
                     />
-                  </a>
-                </div>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
