@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 // at top of the file
 import Image from "next/image";
+import Highlighter from "@/components/ui/highlighter";
 
 import {
   ScrollVelocityContainer,
@@ -191,8 +192,15 @@ export default function Page() {
                 </h1>
 
                 <p className="mt-8 max-w-2xl text-base md:text-lg font-medium text-white inline-block px-4 py-3 opacity-0 animate-[fadeIn_.6s_ease-out_.35s_forwards]">
-                  A Creative Lab for Digital Solutions crafting websites, apps,
-                  and cutting-edge AI ready for the future.
+                  A <Highlighter color="#FF9800">Creative Lab</Highlighter> for
+                  Digital Solutions crafting{" "}
+                  <Highlighter color="#FFC107">websites</Highlighter>,{" "}
+                  <Highlighter color="#FFC107" action="circle">
+                    apps
+                  </Highlighter>
+                  , and cutting-edge{" "}
+                  <Highlighter color="#FF9800">AI</Highlighter> ready for the
+                  future.
                 </p>
 
                 <div className="mt-10 flex">
@@ -300,21 +308,6 @@ export default function Page() {
         <section id="contact" aria-label="Contact Us" className="py-0">
           {/* Full-bleed marquee acts as the stage */}
           <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw]">
-            <ScrollVelocityContainer className="h-screen w-full flex items-center">
-              <ScrollVelocityRow
-                baseVelocity={1.2}
-                direction={1}
-                className="py-4"
-              >
-                <span className="px-[4vw] text-[22vw] md:text-[16vw] leading-[0.85] tracking-[-0.04em] font-extrabold uppercase">
-                  · Start Your Launch · Mulai Peluncuranmu · 开始你的启航 ·
-                  あなたの発射を始めよう · ابدأ انطلاقتك · Inicia Tu Lanzamiento
-                  · Commence Ton Lancement · 당신의 출발을 시작하세요 · Начни
-                  свой запуск · Starte Deinen
-                </span>
-              </ScrollVelocityRow>
-            </ScrollVelocityContainer>
-
             {/* Full-bleed marquee wrapper */}
             <div className="relative w-screen max-w-none left-1/2 right-1/2 -mx-[50vw] z-0">
               <ScrollVelocityContainer className="h-screen w-full flex items-center">
