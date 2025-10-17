@@ -5,7 +5,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import Highlighter from "@/components/ui/highlighter";
 
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import { HeroParallax } from "@/components/ui/hero-parallax";
 
 type Project = {
   id: number;
@@ -65,45 +65,66 @@ export default function Page() {
     },
   ];
 
-  const stickyScrollContent = [
+  const products = [
     {
-      title: "Inside the Worklabs",
-      description:
-        "Discover how we transform ideas into reality with our expertise in web, mobile, and AI solutions.",
-      content: (
-        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Web Solutions</h3>
-            <p className="text-sm">Responsive • Fast • Scalable</p>
-          </div>
-        </div>
-      ),
+      title: "KL Tourism Portal",
+      link: "/projects/kl-tourism",
+      thumbnail: "/images/p1.jpg",
     },
     {
-      title: "Mobile App Innovation",
-      description:
-        "iOS and Android applications with native performance and user experience. We focus on offline-first patterns and smooth deployment processes.",
-      content: (
-        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Mobile Apps</h3>
-            <p className="text-sm">iOS • Android • Cross-platform</p>
-          </div>
-        </div>
-      ),
+      title: "Retail POS Companion",
+      link: "/projects/pos-companion",
+      thumbnail: "/images/p2.jpg",
     },
     {
-      title: "AI & Software Solutions",
-      description:
-        "Cutting-edge AI integration and internal tools that automate workflows, boost accuracy, and transform how your business operates.",
-      content: (
-        <div className="h-full w-full bg-white flex items-center justify-center text-neutral-900">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">AI Solutions</h3>
-            <p className="text-sm">LLM • RAG • Automation</p>
-          </div>
-        </div>
-      ),
+      title: "Smart Routing Engine",
+      link: "/projects/routing",
+      thumbnail: "/images/p3.jpg",
+    },
+    {
+      title: "Media Booking System",
+      link: "/projects/booking",
+      thumbnail: "/images/p4.jpg",
+    },
+    {
+      title: "Citizen Assist App",
+      link: "/projects/citizen",
+      thumbnail: "/images/p5.jpg",
+    },
+    {
+      title: "Forecasting Copilot",
+      link: "/projects/forecasting",
+      thumbnail: "/images/p6.jpg",
+    },
+    {
+      title: "KLTG Marketing Site",
+      link: "/projects/kltg",
+      thumbnail: "/images/p7.jpg",
+    },
+    {
+      title: "City Events Hub",
+      link: "/projects/events",
+      thumbnail: "/images/p8.jpg",
+    },
+    {
+      title: "eGov Service Desk",
+      link: "/projects/egov",
+      thumbnail: "/images/p9.jpg",
+    },
+    {
+      title: "Payments Gateway",
+      link: "/projects/payments",
+      thumbnail: "/images/p10.jpg",
+    },
+    {
+      title: "Fleet Tracker",
+      link: "/projects/fleet",
+      thumbnail: "/images/p11.jpg",
+    },
+    {
+      title: "Creator Studio",
+      link: "/projects/studio",
+      thumbnail: "/images/p12.jpg",
     },
   ];
 
@@ -231,9 +252,8 @@ export default function Page() {
           </div>
         </section>
 
-        {/* CAPABILITIES */}
         <section id="capabilities" className="scroll-mt-24 py-20 bg-white">
-          <StickyScroll content={stickyScrollContent} />
+          <HeroParallax products={products} />
         </section>
 
         {/* PROJECTS */}
