@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+import { Timeline } from "@/components/ui/timeline";
 
 export default function Page() {
   const [currentService, setCurrentService] = useState(0);
@@ -14,6 +15,45 @@ export default function Page() {
     () => ["Mobile App Development", "Software Development", "Web Development"],
     []
   );
+
+  const timelineData = [
+    {
+      title: "2024 → 2025",
+      content: (
+        <div className="space-y-3 text-neutral-700">
+          <p>Kickoff, early client wins, and first product launch.</p>
+          <ul className="list-disc pl-5">
+            <li>Brand + design system</li>
+            <li>Landing pages + growth experiments</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "Q2 2025",
+      content: (
+        <div className="space-y-3 text-neutral-700">
+          <p>Scaled engineering pipeline and shipped v2.</p>
+          <ul className="list-disc pl-5">
+            <li>Web, Mobile & AI integrations</li>
+            <li>Performance & SEO upgrades</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: "Today",
+      content: (
+        <div className="space-y-3 text-neutral-700">
+          <p>Onboarding new partners and polishing DX/UX.</p>
+          <ul className="list-disc pl-5">
+            <li>Component library hardening</li>
+            <li>Analytics-driven iteration</li>
+          </ul>
+        </div>
+      ),
+    },
+  ];
 
   const products = [
     {
@@ -220,25 +260,9 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ABOUT */}
-        <section id="about" className="scroll-mt-24 bg-white text-black">
-          <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-            <h2 className="text-black font-extrabold text-4xl md:text-6xl tracking-tight transition-all duration-300 hover:tracking-tighter">
-              LEARN MORE
-              <br />
-              ABOUT US
-            </h2>
-
-            <MultiLineReveal
-              heightVh={100}
-              stickyHeight="55vh"
-              className=""
-              lines={[
-                "We're your launchpad.",
-                "We design and build web, mobile, and AI solutions",
-                "so your ideas don't just launch, they take off.",
-              ]}
-            />
+        <section id="timeline" className="scroll-mt-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 pt-10">
+            <Timeline data={timelineData} />
           </div>
         </section>
 
