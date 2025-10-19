@@ -179,8 +179,9 @@ export default function Page() {
               </div>
             </h1>
 
-            {/* Minimal CTA */}
-            <div className="mt-16 flex opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
+            {/* CTA + Who We Are */}
+            <div className="mt-16 flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-14 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.5s_forwards]">
+              {/* Left: CTA */}
               <a
                 href="#contact"
                 className="inline-flex items-center border-2 border-black rounded-full px-8 py-4 text-black text-sm font-bold transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 hover:shadow-lg group"
@@ -202,6 +203,19 @@ export default function Page() {
                   />
                 </svg>
               </a>
+
+              {/* Right: "Who We Are" blurb */}
+              <div className="max-w-[46rem] text-left">
+                <div className="text-sm font-semibold text-neutral-500 mb-2">
+                  Who We Are
+                </div>
+                <p className="text-[1.35rem] md:text-[1.6rem] leading-snug tracking-tight text-neutral-900">
+                  <span className="mr-3">✺</span>
+                  UNCU Worklabs is a strategic design & engineering partner to
+                  bold digital brands. We embed with your team, co-build your
+                  product, and help bring it to the world.
+                </p>
+              </div>
             </div>
           </div>
         </section>
