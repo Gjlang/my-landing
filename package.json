@@ -12,9 +12,12 @@
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.1.3",
     "@next/font": "^14.2.15",
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.4.0",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cobe": "^0.6.5",
     "gl-matrix": "^3.4.4",
     "gsap": "^3.13.0",
     "lucide-react": "^0.541.0",
@@ -28,6 +31,8 @@
     "react-icons": "^5.5.0",
     "rough-notation": "^0.5.1",
     "tailwind-merge": "^3.3.1",
+    "three": "^0.160.1",
+    "three-globe": "^2.45.0",
     "zod": "^4.1.5"
   },
   "devDependencies": {

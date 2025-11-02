@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { HeroParallax } from "@/components/ui/hero-parallax";
+import { Globe } from "@/components/ui/globe";
 import { Timeline } from "@/components/ui/timeline";
 
 export default function Page() {
@@ -22,38 +23,79 @@ export default function Page() {
 
   const timelineData = [
     {
-      title: "2024 → 2025",
+      title: "",
       content: (
-        <div className="space-y-3 text-neutral-700">
-          <p>Kickoff, early client wins, and first product launch.</p>
-          <ul className="list-disc pl-5">
-            <li>Brand + design system</li>
-            <li>Landing pages + growth experiments</li>
-          </ul>
+        <div className="space-y-6 text-left">
+          <div className="text-neutral-500/80 text-lg md:text-xl tabular-nums">
+            01
+          </div>
+          <h3 className="text-white font-black tracking-tight leading-[0.9] text-[clamp(2rem,6vw,4.5rem)]">
+            Your Focus Is Split
+          </h3>
+          <p className="text-neutral-400 text-lg md:text-2xl max-w-3xl">
+            You dont have the time, energy, or resources to implement your ideas
+            and dont want to reassign your internal team from core tasks to work
+            on new initiatives.
+          </p>
+        </div>
+      ),
+      right: (
+        <div className="flex items-center justify-center w-full h-full">
+          <div className="relative w-full max-w-[450px] aspect-square">
+            <Globe className="!static w-full h-full" />
+          </div>
         </div>
       ),
     },
+
     {
-      title: "Q2 2025",
+      title: "",
       content: (
-        <div className="space-y-3 text-neutral-700">
-          <p>Scaled engineering pipeline and shipped v2.</p>
-          <ul className="list-disc pl-5">
-            <li>Web, Mobile & AI integrations</li>
-            <li>Performance & SEO upgrades</li>
-          </ul>
+        <div className="space-y-6 text-left">
+          <div className="text-neutral-500/80 text-lg md:text-xl tabular-nums">
+            02
+          </div>
+          <h3 className="text-white font-black tracking-tight leading-[0.9] text-[clamp(2rem,6vw,4.5rem)]">
+            Growth Has Stalled
+          </h3>
+          <p className="text-neutral-400 text-lg md:text-2xl max-w-3xl">
+            Your current systems and processes cant scale with demand. You need
+            fresh perspectives and proven strategies to break through plateaus
+            and accelerate expansion.
+          </p>
+        </div>
+      ),
+      right: (
+        <div className="flex items-center justify-center w-full h-full">
+          <div className="relative w-full max-w-[450px] aspect-square">
+            <Globe className="!static w-full h-full" />
+          </div>
         </div>
       ),
     },
+
     {
-      title: "Today",
+      title: "",
       content: (
-        <div className="space-y-3 text-neutral-700">
-          <p>Onboarding new partners and polishing DX/UX.</p>
-          <ul className="list-disc pl-5">
-            <li>Component library hardening</li>
-            <li>Analytics-driven iteration</li>
-          </ul>
+        <div className="space-y-6 text-left">
+          <div className="text-neutral-500/80 text-lg md:text-xl tabular-nums">
+            03
+          </div>
+          <h3 className="text-white font-black tracking-tight leading-[0.9] text-[clamp(2rem,6vw,4.5rem)]">
+            Expertise Is Missing
+          </h3>
+          <p className="text-neutral-400 text-lg md:text-2xl max-w-3xl">
+            You lack specialized skills in critical areas like AI, automation,
+            or digital transformation. Hiring full-time experts is expensive and
+            time-consuming when you need results now.
+          </p>
+        </div>
+      ),
+      right: (
+        <div className="flex items-center justify-center w-full h-full">
+          <div className="relative w-full max-w-[450px] aspect-square">
+            <Globe className="!static w-full h-full" />
+          </div>
         </div>
       ),
     },
@@ -312,10 +354,9 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="timeline" className="scroll-mt-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 pt-10">
-            <Timeline data={timelineData} />
-          </div>
+        <section id="timeline" className="scroll-mt-24 bg-black text-white">
+          {/* full-bleed: tidak ada wrapper max-w/px di sini */}
+          <Timeline data={timelineData} />
         </section>
 
         {/* CAPABILITIES */}
