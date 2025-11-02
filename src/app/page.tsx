@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 
 import { MultiLineReveal } from "@/components/magicui/text-reveal";
 import { HeroParallax } from "@/components/ui/hero-parallax";
@@ -10,6 +10,10 @@ export default function Page() {
   const [currentService, setCurrentService] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const line1Ref = useRef<HTMLSpanElement | null>(null);
+  const line2Ref = useRef<HTMLSpanElement | null>(null);
 
   const servicesRotating = useMemo(
     () => ["Mobile App Development", "Software Development", "Web Development"],
@@ -149,6 +153,67 @@ export default function Page() {
   ];
 
   useEffect(() => {
+    const el = heroRef.current;
+    const l1 = line1Ref.current;
+    const l2 = line2Ref.current;
+    if (!el || !l1 || !l2) return;
+
+    let raf = 0;
+    const clamp = (v: number, min: number, max: number) =>
+      Math.max(min, Math.min(max, v));
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const vw = window.innerWidth || 1;
+
+        // absolute positions
+        const absTop = rect.top + window.scrollY;
+        const start = absTop; // progress=0 saat top hero sejajar top viewport
+        const end = absTop + rect.height; // progress=1 saat hero keluar di atas
+        const y = window.scrollY;
+
+        const progress = clamp((y - start) / (end - start), 0, 1);
+
+        // batas aman + drift yang lebih konservatif
+        const gutter = Math.min(vw * 0.06, 64);
+        const baseMax = vw * (vw < 768 ? 0.06 : 0.12);
+
+        // ruang aman kiri/kanan (biar gak kepotong)
+        const l1Rect = l1.getBoundingClientRect();
+        const l2Rect = l2.getBoundingClientRect();
+        const roomLeft = Math.max(0, l1Rect.left - gutter);
+        const roomRight = Math.max(0, vw - gutter - l2Rect.right);
+
+        const l1Max = Math.min(baseMax, roomLeft);
+        const l2Max = Math.min(baseMax, roomRight);
+
+        const l1x = -progress * l1Max; // UNCU ke kiri
+        const l2x = progress * l2Max; // WORKLABS ke kanan
+
+        l1.style.transform = `translate3d(${l1x}px,0,0)`;
+        l2.style.transform = `translate3d(${l2x}px,0,0)`;
+      });
+    };
+
+    // set posisi awal rapi (progress=0)
+    l1.style.transform = `translate3d(0,0,0)`;
+    l2.style.transform = `translate3d(0,0,0)`;
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
     const currentText = servicesRotating[currentService];
     const timeout = setTimeout(
       () => {
@@ -181,42 +246,29 @@ export default function Page() {
         {/* Hero Section */}
         <section
           id="home"
-          className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
+          className="relative min-h-screen flex items-center justify-center bg-white overflow-visible"
         >
           {/* Content */}
-          <div className="relative z-10 mx-auto w-full max-w-[1440px] px-8 py-24 md:py-32">
-            <h1 className="text-left leading-[0.85] tracking-[-0.03em] font-black text-black">
-              {/* Line 1: LAUNCH with play button */}
-              <div className="relative inline-block mb-2 md:mb-4 group">
-                <span className="block text-[clamp(4rem,12vw,14rem)] transition-all duration-300 group-hover:tracking-[-0.04em]">
-                  UNCU
-                </span>
-                {/* Play button chip */}
-                <button
-                  className="absolute top-[50%] right-[-140px] transform -translate-y-1/2 w-[160px] h-[90px] rounded-[40px] overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 hidden md:block group"
-                  aria-label="Play reel"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://images.unsplash.com/photo-1598128558393-70ff21433be0?w=400&h=300&fit=crop"
-                    alt="Product showcase"
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center transition-all duration-300 group-hover:bg-black/10">
-                    <span className="text-white text-xs font-bold tracking-wider transition-all duration-300 group-hover:scale-110">
-                      PLAY
-                    </span>
-                  </div>
-                </button>
-              </div>
+          <div className="relative z-10 mx-auto w-full max-w-[1440px] px-[6vw] md:px-[8vw] py-24 md:py-32">
+            <h1
+              ref={heroRef}
+              className="text-center leading-[0.85] tracking-[-0.03em] font-black text-black"
+            >
+              <span
+                ref={line1Ref}
+                className="inline-block mx-auto text-[clamp(4rem,12vw,14rem)] will-change-transform"
+                style={{ transform: "translate3d(0,0,0)" }}
+              >
+                UNCU
+              </span>
 
-              {/* Line 2: DIGITAL */}
-              <div className="relative inline-block mb-2 md:mb-4 group">
-                <span className="block text-[clamp(4rem,12vw,14rem)] transition-all duration-300 group-hover:tracking-[-0.04em]">
-                  WORKLABS
-                </span>
-              </div>
+              <span
+                ref={line2Ref}
+                className="inline-block mx-auto text-[clamp(4rem,12vw,14rem)] mt-2 will-change-transform"
+                style={{ transform: "translate3d(0,0,0)" }}
+              >
+                WORKLABS
+              </span>
             </h1>
 
             {/* CTA + Who We Are */}
@@ -396,46 +448,52 @@ export default function Page() {
       </div>
 
       {/* Utilities */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
+      <style jsx>
+        {`
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
+          @keyframes blink {
+            0%,
+            50% {
+              opacity: 1;
+            }
+            51%,
+            100% {
+              opacity: 0;
+            }
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          .will-change-transform {
+            will-change: transform;
           }
-        }
-        @keyframes blink {
-          0%,
-          50% {
-            opacity: 1;
+
+          @media (max-width: 768px) {
+            .main-container {
+              flex-direction: column !important;
+              text-align: center;
+              gap: 2rem !important;
+              padding: 32px !important;
+            }
           }
-          51%,
-          100% {
-            opacity: 0;
-          }
-        }
-        @media (max-width: 768px) {
-          .main-container {
-            flex-direction: column !important;
-            text-align: center;
-            gap: 2rem !important;
-            padding: 32px !important;
-          }
-        }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 }
