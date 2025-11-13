@@ -4,7 +4,6 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 
-// ✅ IMPORT MENU BARU
 import StaggeredMenu, {
   StaggeredMenuItem,
   StaggeredMenuSocialItem,
@@ -55,7 +54,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.className} antialiased min-h-screen`}
       >
         <Providers>
-          {/* ✅ GANTI DENGAN STAGGERED MENU */}
           <StaggeredMenu
             position="left"
             colors={["#22255b", "#4bbbed", "#d33831"]}

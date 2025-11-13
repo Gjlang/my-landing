@@ -131,7 +131,7 @@ const TimelineItem = ({
         y,
         filter: `blur(${blur}px)`,
       }}
-      className="sticky top-20 flex justify-start pt-10 md:pt-20 gap-8 md:gap-12 min-h-[90vh]"
+      className="relative flex justify-start pt-10 md:pt-20 gap-8 md:gap-12 min-h-[90vh]"
     >
       {/* Timeline dot */}
       <div className="flex-shrink-0 relative">
